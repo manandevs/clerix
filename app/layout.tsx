@@ -1,32 +1,34 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import ConvexClientProvider from "@/components/ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const helvetica = localFont({
   src: "../public/fonts/helvetica.ttf",
   variable: "--font-helvetica",
-  display: "swap", 
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#18181b", 
+  themeColor: "#18181b",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://clerix.viitechnologies.eu"), 
+  metadataBase: new URL("https://clerix.viitechnologies.eu"),
 
   title: {
     default: "Clerix | AI Personal Data Privacy Dashboard",
     template: "%s | Clerix Privacy Command Center",
   },
-  
+
   description: "Take control of your digital footprint with Clerix. The all-in-one privacy dashboard that finds, hides, and removes your sensitive personal data from the internet using advanced AI monitoring.",
-  
+
   applicationName: "Clerix",
-  
+
   keywords: [
     "personal data removal",
     "privacy dashboard",
@@ -108,7 +110,11 @@ export default function RootLayout({
       <body
         className={`${helvetica.variable} antialiased font-helvetica bg-background text-foreground`}
       >
-        {children}
+        <ClerkProvider>
+          <ConvexClientProvider>
+            {children}
+          </ConvexClientProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

@@ -28,6 +28,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useUser, useClerk } from "@clerk/nextjs"
 
 export function NavUser({
   user,
@@ -39,6 +42,19 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const router = useRouter()
+  const { user: clerkUser } = useUser()
+  const { signOut } = useClerk()
+
+  const handleAccountClick = () => {
+    // Redirect to Clerk profile page
+    router.push("/dashboard/profile")
+  }
+
+  const handleSignOut = async () => {
+    await signOut()
+    router.push("/") // redirect to home after logout
+  }
 
   return (
     <SidebarMenu>
@@ -53,7 +69,7 @@ export function NavUser({
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
+              <div className="grid flex-1 text-left text-sm leading-tight ml-2">
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="text-muted-foreground truncate text-xs">
                   {user.email}
@@ -62,14 +78,16 @@ export function NavUser({
               <IconDotsVertical className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
+
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            className="min-w-[224px] rounded-lg"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
           >
+            {/* User info */}
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+              <div className="flex items-center gap-2 px-2 py-2 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
@@ -82,24 +100,33 @@ export function NavUser({
                 </div>
               </div>
             </DropdownMenuLabel>
+
             <DropdownMenuSeparator />
+
+            {/* Menu options */}
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
+              <DropdownMenuItem onClick={handleAccountClick}>
+                <IconUserCircle className="mr-2" />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
+
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/billing" className="flex items-center">
+                  <IconCreditCard className="mr-2" />
+                  Billing
+                </Link>
               </DropdownMenuItem>
+
               <DropdownMenuItem>
-                <IconNotification />
+                <IconNotification className="mr-2" />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
+
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <IconLogout />
+
+            <DropdownMenuItem onClick={handleSignOut}>
+              <IconLogout className="mr-2" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

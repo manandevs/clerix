@@ -20,6 +20,8 @@ import {
   Instagram,
   Twitter,
 } from "lucide-react"
+import { Authenticated, Unauthenticated } from "convex/react";
+import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 
 function Header() {
   const navLinks = [
@@ -38,10 +40,12 @@ function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 p-4">
       <nav className="max-w-5xl mx-auto flex items-center justify-between h-12 px-2 rounded-full bg-zinc-900 border border-zinc-800 backdrop-blur-md">
+
         <Link href="/" className="font-display text-lg font-semibold text-zinc-100 flex items-center gap-2">
           <div className="w-10 h-6 bg-white rounded-full"></div>
           Clerix
         </Link>
+
         <div className="flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
@@ -52,12 +56,35 @@ function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/dashboard"
-            className="ml-2 px-4 py-1.5 text-sm rounded-full bg-zinc-100 text-zinc-900 font-medium hover:bg-zinc-200 transition-colors"
-          >
-            Open Dashboard
-          </Link>
+
+          {/* 🔐 Auth Section */}
+          <Unauthenticated>
+            <div className="flex items-center gap-2">
+              <SignInButton mode="modal">
+                <button className="px-4 py-1.5 text-sm text-zinc-100 hover:text-white">
+                  Login
+                </button>
+              </SignInButton>
+
+              <SignUpButton mode="modal">
+                <button className="px-4 py-1.5 text-sm rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </div>
+          </Unauthenticated>
+
+          <Authenticated>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/dashboard"
+                className="px-4 py-1.5 text-sm rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition"
+              >
+                Dashboard
+              </Link>
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </Authenticated>
         </div>
       </nav>
     </header>

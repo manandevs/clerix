@@ -1,0 +1,1663 @@
+=== D:\next\clerix\convex\auth.config.ts ===
+import { AuthConfig } from "convex/server";
+
+export default {
+  providers: [
+    {
+      // Replace with your own Clerk Issuer URL from your "convex" JWT template
+      // or with `process.env.CLERK_JWT_ISSUER_DOMAIN`
+      // and configure CLERK_JWT_ISSUER_DOMAIN on the Convex Dashboard
+      // See https://docs.convex.dev/auth/clerk#configuring-dev-and-prod-instances
+      domain: process.env.CLERK_JWT_ISSUER_DOMAIN!,
+      applicationID: "convex",
+    },
+  ]
+} satisfies AuthConfig;
+
+=== D:\next\clerix\convex\clerk-webhook-events-catalog.md ===
+
+# paymentAttempt.created
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "billing_date": 42,
+    "charge_type": "some string",
+    "created_at": 42,
+    "failed_at": 42,
+    "failed_reason": {
+      "code": "some string",
+      "decline_code": "some string"
+    },
+    "gateway_external_id": "some string",
+    "id": "some string",
+    "instance_id": "some string",
+    "paid_at": 42,
+    "payee": {
+      "gateway_external_id": "some string",
+      "gateway_status": "some string",
+      "gateway_type": "some string",
+      "id": "some string"
+    },
+    "payer": {
+      "email": "some string",
+      "first_name": "some string",
+      "id": "some string",
+      "image_url": "some string",
+      "last_name": "some string",
+      "organization_id": "some string",
+      "organization_name": "some string",
+      "user_id": "some string"
+    },
+    "payment_id": "some string",
+    "payment_source": {
+      "card_type": "some string",
+      "gateway": "some string",
+      "gateway_external_account_id": "some string",
+      "gateway_external_id": "some string",
+      "id": "some string",
+      "last4": "some string",
+      "payment_method": "some string",
+      "status": "some string"
+    },
+    "statement_id": "some string",
+    "status": "some string",
+    "subscription_items": [
+      {
+        "amount": {
+          "amount": 42,
+          "amount_formatted": "some string",
+          "currency": "some string",
+          "currency_symbol": "some string"
+        },
+        "canceled_at": 42,
+        "credit": {
+          "amount": {
+            "amount": 42,
+            "amount_formatted": "some string",
+            "currency": "some string",
+            "currency_symbol": "some string"
+          },
+          "cycle_days_remaining": 42,
+          "cycle_days_total": 42,
+          "cycle_remaining_percent": 3.14
+        },
+        "id": "some string",
+        "lifetime_paid": 42,
+        "next_payment_amount": 42,
+        "next_payment_date": 42,
+        "past_due_at": 42,
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "annual_monthly_amount": 42,
+          "currency": "some string",
+          "description": "some string",
+          "has_base_fee": true,
+          "id": "some string",
+          "instance_id": "some string",
+          "interval": 42,
+          "is_default": true,
+          "is_prorated": true,
+          "is_recurring": true,
+          "name": "some string",
+          "period": "some string",
+          "product_id": "some string",
+          "publicly_visible": true,
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "plan_period": "some string",
+        "proration_date": "some string",
+        "status": "some string"
+      }
+    ],
+    "totals": {
+      "grand_total": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      },
+      "subtotal": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      },
+      "tax_total": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      }
+    },
+    "updated_at": 42
+  }
+}
+
+# paymentAttempt.updated
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "billing_date": 42,
+    "charge_type": "some string",
+    "created_at": 42,
+    "failed_at": 42,
+    "failed_reason": {
+      "code": "some string",
+      "decline_code": "some string"
+    },
+    "gateway_external_id": "some string",
+    "id": "some string",
+    "instance_id": "some string",
+    "paid_at": 42,
+    "payee": {
+      "gateway_external_id": "some string",
+      "gateway_status": "some string",
+      "gateway_type": "some string",
+      "id": "some string"
+    },
+    "payer": {
+      "email": "some string",
+      "first_name": "some string",
+      "id": "some string",
+      "image_url": "some string",
+      "last_name": "some string",
+      "organization_id": "some string",
+      "organization_name": "some string",
+      "user_id": "some string"
+    },
+    "payment_id": "some string",
+    "payment_source": {
+      "card_type": "some string",
+      "gateway": "some string",
+      "gateway_external_account_id": "some string",
+      "gateway_external_id": "some string",
+      "id": "some string",
+      "last4": "some string",
+      "payment_method": "some string",
+      "status": "some string"
+    },
+    "statement_id": "some string",
+    "status": "some string",
+    "subscription_items": [
+      {
+        "amount": {
+          "amount": 42,
+          "amount_formatted": "some string",
+          "currency": "some string",
+          "currency_symbol": "some string"
+        },
+        "canceled_at": 42,
+        "credit": {
+          "amount": {
+            "amount": 42,
+            "amount_formatted": "some string",
+            "currency": "some string",
+            "currency_symbol": "some string"
+          },
+          "cycle_days_remaining": 42,
+          "cycle_days_total": 42,
+          "cycle_remaining_percent": 3.14
+        },
+        "id": "some string",
+        "lifetime_paid": 42,
+        "next_payment_amount": 42,
+        "next_payment_date": 42,
+        "past_due_at": 42,
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "annual_monthly_amount": 42,
+          "currency": "some string",
+          "description": "some string",
+          "has_base_fee": true,
+          "id": "some string",
+          "instance_id": "some string",
+          "interval": 42,
+          "is_default": true,
+          "is_prorated": true,
+          "is_recurring": true,
+          "name": "some string",
+          "period": "some string",
+          "product_id": "some string",
+          "publicly_visible": true,
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "plan_period": "some string",
+        "proration_date": "some string",
+        "status": "some string"
+      }
+    ],
+    "totals": {
+      "grand_total": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      },
+      "subtotal": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      },
+      "tax_total": {
+        "amount": 42,
+        "amount_formatted": "some string",
+        "currency": "some string",
+        "currency_symbol": "some string"
+      }
+    },
+    "updated_at": 42
+  }
+}
+
+# subscription.active
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "active_at": 42,
+    "canceled_at": 42,
+    "created_at": 42,
+    "ended_at": 42,
+    "id": "some string",
+    "items": [
+      {
+        "created_at": 42,
+        "id": "some string",
+        "interval": "some string",
+        "object": "some string",
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "currency": "some string",
+          "id": "some string",
+          "is_default": true,
+          "is_recurring": true,
+          "name": "some string",
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "status": "some string",
+        "subscription_id": "some string",
+        "updated_at": 42
+      }
+    ],
+    "latest_payment_id": "some string",
+    "object": "some string",
+    "past_due_at": 42,
+    "payer_id": "some string",
+    "payment_source_id": "some string",
+    "status": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscription.created
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "active_at": 42,
+    "canceled_at": 42,
+    "created_at": 42,
+    "ended_at": 42,
+    "id": "some string",
+    "items": [
+      {
+        "created_at": 42,
+        "id": "some string",
+        "interval": "some string",
+        "object": "some string",
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "currency": "some string",
+          "id": "some string",
+          "is_default": true,
+          "is_recurring": true,
+          "name": "some string",
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "status": "some string",
+        "subscription_id": "some string",
+        "updated_at": 42
+      }
+    ],
+    "latest_payment_id": "some string",
+    "object": "some string",
+    "past_due_at": 42,
+    "payer_id": "some string",
+    "payment_source_id": "some string",
+    "status": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscription.past_due
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "active_at": 42,
+    "canceled_at": 42,
+    "created_at": 42,
+    "ended_at": 42,
+    "id": "some string",
+    "items": [
+      {
+        "created_at": 42,
+        "id": "some string",
+        "interval": "some string",
+        "object": "some string",
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "currency": "some string",
+          "id": "some string",
+          "is_default": true,
+          "is_recurring": true,
+          "name": "some string",
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "status": "some string",
+        "subscription_id": "some string",
+        "updated_at": 42
+      }
+    ],
+    "latest_payment_id": "some string",
+    "object": "some string",
+    "past_due_at": 42,
+    "payer_id": "some string",
+    "payment_source_id": "some string",
+    "status": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscription.updated
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "active_at": 42,
+    "canceled_at": 42,
+    "created_at": 42,
+    "ended_at": 42,
+    "id": "some string",
+    "items": [
+      {
+        "created_at": 42,
+        "id": "some string",
+        "interval": "some string",
+        "object": "some string",
+        "period_end": 42,
+        "period_start": 42,
+        "plan": {
+          "amount": 42,
+          "currency": "some string",
+          "id": "some string",
+          "is_default": true,
+          "is_recurring": true,
+          "name": "some string",
+          "slug": "some string"
+        },
+        "plan_id": "some string",
+        "status": "some string",
+        "subscription_id": "some string",
+        "updated_at": 42
+      }
+    ],
+    "latest_payment_id": "some string",
+    "object": "some string",
+    "past_due_at": 42,
+    "payer_id": "some string",
+    "payment_source_id": "some string",
+    "status": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.abandoned
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.active
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.canceled
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.created
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.ended
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.incomplete
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.past_due
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.upcoming
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# subscriptionItem.updated
+
+{
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "some string",
+      "user_agent": "some string"
+    }
+  },
+  "instance_id": "some string",
+  "object": "some string",
+  "timestamp": 42,
+  "type": "some string",
+  "data": {
+    "created_at": 42,
+    "id": "some string",
+    "interval": "some string",
+    "object": "some string",
+    "period_end": 42,
+    "period_start": 42,
+    "plan": {
+      "amount": 42,
+      "currency": "some string",
+      "id": "some string",
+      "is_default": true,
+      "is_recurring": true,
+      "name": "some string",
+      "slug": "some string"
+    },
+    "plan_id": "some string",
+    "status": "some string",
+    "subscription_id": "some string",
+    "updated_at": 42
+  }
+}
+
+# user.created
+
+{
+  "data": {
+    "birthday": "",
+    "created_at": 1654012591514,
+    "email_addresses": [
+      {
+        "email_address": "example@example.org",
+        "id": "idn_29w83yL7CwVlJXylYLxcslromF1",
+        "linked_to": [],
+        "object": "email_address",
+        "verification": {
+          "status": "verified",
+          "strategy": "ticket"
+        }
+      }
+    ],
+    "external_accounts": [],
+    "external_id": "567772",
+    "first_name": "Example",
+    "gender": "",
+    "id": "user_29w83sxmDNGwOuEthce5gg56FcC",
+    "image_url": "https://img.clerk.com/xxxxxx",
+    "last_name": "Example",
+    "last_sign_in_at": 1654012591514,
+    "object": "user",
+    "password_enabled": true,
+    "phone_numbers": [],
+    "primary_email_address_id": "idn_29w83yL7CwVlJXylYLxcslromF1",
+    "primary_phone_number_id": null,
+    "primary_web3_wallet_id": null,
+    "private_metadata": {},
+    "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
+    "public_metadata": {},
+    "two_factor_enabled": false,
+    "unsafe_metadata": {},
+    "updated_at": 1654012591835,
+    "username": null,
+    "web3_wallets": []
+  },
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "0.0.0.0",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+  },
+  "object": "event",
+  "timestamp": 1654012591835,
+  "type": "user.created"
+}
+
+# user.deleted
+
+{
+  "data": {
+    "deleted": true,
+    "id": "user_29wBMCtzATuFJut8jO2VNTVekS4",
+    "object": "user"
+  },
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "0.0.0.0",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+  },
+  "object": "event",
+  "timestamp": 1661861640000,
+  "type": "user.deleted"
+}
+
+# user.updated
+
+{
+  "data": {
+    "birthday": "",
+    "created_at": 1654012591514,
+    "email_addresses": [
+      {
+        "email_address": "example@example.org",
+        "id": "idn_29w83yL7CwVlJXylYLxcslromF1",
+        "linked_to": [],
+        "object": "email_address",
+        "reserved": true,
+        "verification": {
+          "attempts": null,
+          "expire_at": null,
+          "status": "verified",
+          "strategy": "admin"
+        }
+      }
+    ],
+    "external_accounts": [],
+    "external_id": null,
+    "first_name": "Example",
+    "gender": "",
+    "id": "user_29w83sxmDNGwOuEthce5gg56FcC",
+    "image_url": "https://img.clerk.com/xxxxxx",
+    "last_name": null,
+    "last_sign_in_at": null,
+    "object": "user",
+    "password_enabled": true,
+    "phone_numbers": [],
+    "primary_email_address_id": "idn_29w83yL7CwVlJXylYLxcslromF1",
+    "primary_phone_number_id": null,
+    "primary_web3_wallet_id": null,
+    "private_metadata": {},
+    "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
+    "public_metadata": {},
+    "two_factor_enabled": false,
+    "unsafe_metadata": {},
+    "updated_at": 1654012824306,
+    "username": null,
+    "web3_wallets": []
+  },
+  "event_attributes": {
+    "http_request": {
+      "client_ip": "0.0.0.0",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    }
+  },
+  "object": "event",
+  "timestamp": 1654012824306,
+  "type": "user.updated"
+}
+
+=== D:\next\clerix\convex\http.ts ===
+import { httpRouter } from "convex/server";
+import { httpAction } from "./_generated/server";
+import { internal } from "./_generated/api";
+import type { WebhookEvent } from "@clerk/backend";
+import { Webhook } from "svix";
+// import { transformWebhookData } from "./paymentAttemptTypes";
+
+const http = httpRouter();
+
+http.route({
+  path: "/clerk-users-webhook",
+  method: "POST",
+  handler: httpAction(async (ctx, request) => {
+    const event = await validateRequest(request);
+    if (!event) {
+      return new Response("Error occured", { status: 400 });
+    }
+    switch ((event as any).type) {
+      case "user.created": // intentional fallthrough
+      case "user.updated":
+        await ctx.runMutation(internal.users.upsertFromClerk, {
+          data: event.data as any,
+        });
+        break;
+
+      case "user.deleted": {
+        const clerkUserId = (event.data as any).id!;
+        await ctx.runMutation(internal.users.deleteFromClerk, { clerkUserId });
+        break;
+      }
+
+      case "paymentAttempt.updated": {
+        const paymentAttemptData = transformWebhookData((event as any).data);
+        await ctx.runMutation(internal.paymentAttempts.savePaymentAttempt, {
+          paymentAttemptData,
+        });
+        break;
+      }
+      
+
+      
+      default:
+        console.log("Ignored webhook event", (event as any).type);
+    }
+
+    return new Response(null, { status: 200 });
+  }),
+});
+
+async function validateRequest(req: Request): Promise<WebhookEvent | null> {
+  const payloadString = await req.text();
+  const svixHeaders = {
+    "svix-id": req.headers.get("svix-id")!,
+    "svix-timestamp": req.headers.get("svix-timestamp")!,
+    "svix-signature": req.headers.get("svix-signature")!,
+  };
+  const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
+  try {
+    return wh.verify(payloadString, svixHeaders) as unknown as WebhookEvent;
+  } catch (error) {
+    console.error("Error verifying webhook event", error);
+    return null;
+  }
+}
+
+export default http;
+
+=== D:\next\clerix\convex\paymentAttempts.ts ===
+import { internalMutation, QueryCtx } from "./_generated/server";
+import { v } from "convex/values";
+import { paymentAttemptDataValidator } from "./paymentAttemptTypes";
+
+async function userByExternalId(ctx: QueryCtx, externalId: string) {
+  return await ctx.db
+    .query("users")
+    .withIndex("byExternalId", (q) => q.eq("externalId", externalId))
+    .unique();
+}
+
+export const savePaymentAttempt = internalMutation({
+  args: { 
+    paymentAttemptData: paymentAttemptDataValidator
+  },
+  returns: v.null(),
+  handler: async (ctx, { paymentAttemptData }) => {
+    // Find the user by the payer.user_id (which maps to externalId in our users table)
+    const user = await userByExternalId(ctx, paymentAttemptData.payer.user_id);
+    
+    // Check if payment attempt already exists to avoid duplicates
+    const existingPaymentAttempt = await ctx.db
+      .query("paymentAttempts")
+      .withIndex("byPaymentId", (q) => q.eq("payment_id", paymentAttemptData.payment_id))
+      .unique();
+    
+    const paymentAttemptRecord = {
+      ...paymentAttemptData,
+      userId: user?._id, // Link to our users table if user exists
+    };
+    
+    if (existingPaymentAttempt) {
+      // Update existing payment attempt
+      await ctx.db.patch(existingPaymentAttempt._id, paymentAttemptRecord);
+    } else {
+      // Create new payment attempt
+      await ctx.db.insert("paymentAttempts", paymentAttemptRecord);
+    }
+    
+    return null;
+  },
+}); 
+
+=== D:\next\clerix\convex\paymentAttemptTypes.ts ===
+import { v } from "convex/values";
+
+// Reusable validators for payment attempt data
+export const paymentAttemptValidators = {
+  billing_date: v.number(),
+  charge_type: v.string(),
+  created_at: v.number(),
+  failed_at: v.optional(v.number()),
+  failed_reason: v.optional(v.object({
+    code: v.string(),
+    decline_code: v.optional(v.string()),
+  })),
+  invoice_id: v.string(),
+  paid_at: v.optional(v.number()),
+  payment_id: v.string(),
+  statement_id: v.string(),
+  status: v.string(),
+  updated_at: v.number(),
+  payer: v.object({
+    email: v.string(),
+    first_name: v.string(),
+    last_name: v.string(),
+    user_id: v.string(),
+  }),
+  payment_source: v.object({
+    card_type: v.string(),
+    last4: v.string(),
+  }),
+  subscription_items: v.array(v.object({
+    amount: v.object({
+      amount: v.number(),
+      amount_formatted: v.string(),
+      currency: v.string(),
+      currency_symbol: v.string(),
+    }),
+    plan: v.object({
+      id: v.string(),
+      name: v.string(),
+      slug: v.string(),
+      amount: v.number(),
+      currency: v.string(),
+      period: v.string(),
+      interval: v.number(),
+    }),
+    status: v.string(),
+    period_start: v.number(),
+    period_end: v.number(),
+  })),
+  totals: v.object({
+    grand_total: v.object({
+      amount: v.number(),
+      amount_formatted: v.string(),
+      currency: v.string(),
+      currency_symbol: v.string(),
+    }),
+    subtotal: v.object({
+      amount: v.number(),
+      amount_formatted: v.string(),
+      currency: v.string(),
+      currency_symbol: v.string(),
+    }),
+    tax_total: v.object({
+      amount: v.number(),
+      amount_formatted: v.string(),
+      currency: v.string(),
+      currency_symbol: v.string(),
+    }),
+  }),
+};
+
+// Combined validator for the complete payment attempt data
+export const paymentAttemptDataValidator = v.object(paymentAttemptValidators);
+
+// Schema validator (includes the userId link)
+export const paymentAttemptSchemaValidator = v.object({
+  ...paymentAttemptValidators,
+  userId: v.optional(v.id("users")),
+});
+
+// Helper function to transform webhook data to our format
+export function transformWebhookData(data: any) {
+  return {
+    billing_date: data.billing_date,
+    charge_type: data.charge_type,
+    created_at: data.created_at,
+    failed_at: data.failed_at || undefined,
+    failed_reason: data.failed_reason || undefined,
+    invoice_id: data.invoice_id,
+    paid_at: data.paid_at || undefined,
+    payment_id: data.payment_id,
+    statement_id: data.statement_id,
+    status: data.status,
+    updated_at: data.updated_at,
+    payer: {
+      email: data.payer.email,
+      first_name: data.payer.first_name,
+      last_name: data.payer.last_name,
+      user_id: data.payer.user_id,
+    },
+    payment_source: {
+      card_type: data.payment_source.card_type,
+      last4: data.payment_source.last4,
+    },
+    subscription_items: data.subscription_items.map((item: any) => ({
+      amount: {
+        amount: item.amount.amount,
+        amount_formatted: item.amount.amount_formatted,
+        currency: item.amount.currency,
+        currency_symbol: item.amount.currency_symbol,
+      },
+      plan: {
+        id: item.plan.id,
+        name: item.plan.name,
+        slug: item.plan.slug,
+        amount: item.plan.amount,
+        currency: item.plan.currency,
+        period: item.plan.period,
+        interval: item.plan.interval,
+      },
+      status: item.status,
+      period_start: item.period_start,
+      period_end: item.period_end,
+    })),
+    totals: {
+      grand_total: {
+        amount: data.totals.grand_total.amount,
+        amount_formatted: data.totals.grand_total.amount_formatted,
+        currency: data.totals.grand_total.currency,
+        currency_symbol: data.totals.grand_total.currency_symbol,
+      },
+      subtotal: {
+        amount: data.totals.subtotal.amount,
+        amount_formatted: data.totals.subtotal.amount_formatted,
+        currency: data.totals.subtotal.currency,
+        currency_symbol: data.totals.subtotal.currency_symbol,
+      },
+      tax_total: {
+        amount: data.totals.tax_total.amount,
+        amount_formatted: data.totals.tax_total.amount_formatted,
+        currency: data.totals.tax_total.currency,
+        currency_symbol: data.totals.tax_total.currency_symbol,
+      },
+    },
+  };
+} 
+
+=== D:\next\clerix\convex\schema.ts ===
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
+import { paymentAttemptSchemaValidator } from "./paymentAttemptTypes";
+
+export default defineSchema({
+    users: defineTable({
+      name: v.string(),
+      // this the Clerk ID, stored in the subject JWT field
+      externalId: v.string(),
+    }).index("byExternalId", ["externalId"]),
+    
+    paymentAttempts: defineTable(paymentAttemptSchemaValidatorpaymentAttempts.ts)
+      .index("byPaymentId", ["payment_id"])
+      .index("byUserId", ["userId"])
+      .index("byPayerUserId", ["payer.user_id"]),
+  });
+
+=== D:\next\clerix\convex\users.ts ===
+import { internalMutation, query, QueryCtx } from "./_generated/server";
+import { UserJSON } from "@clerk/backend";
+import { v, Validator } from "convex/values";
+
+export const current = query({
+  args: {},
+  handler: async (ctx) => {
+    return await getCurrentUser(ctx);
+  },
+});
+
+export const upsertFromClerk = internalMutation({
+  args: { data: v.any() as Validator<UserJSON> }, // no runtime validation, trust Clerk
+  async handler(ctx, { data }) {
+    const userAttributes = {
+      name: `${data.first_name} ${data.last_name}`,
+      externalId: data.id,
+    };
+
+    const user = await userByExternalId(ctx, data.id);
+    if (user === null) {
+      await ctx.db.insert("users", userAttributes);
+    } else {
+      await ctx.db.patch(user._id, userAttributes);
+    }
+  },
+});
+
+export const deleteFromClerk = internalMutation({
+  args: { clerkUserId: v.string() },
+  async handler(ctx, { clerkUserId }) {
+    const user = await userByExternalId(ctx, clerkUserId);
+
+    if (user !== null) {
+      await ctx.db.delete(user._id);
+    } else {
+      console.warn(
+        `Can't delete user, there is none for Clerk user ID: ${clerkUserId}`,
+      );
+    }
+  },
+});
+
+
+
+export async function getCurrentUserOrThrow(ctx: QueryCtx) {
+  const userRecord = await getCurrentUser(ctx);
+  if (!userRecord) throw new Error("Can't get current user");
+  return userRecord;
+}
+
+export async function getCurrentUser(ctx: QueryCtx) {
+  const identity = await ctx.auth.getUserIdentity();
+  if (identity === null) {
+    return null;
+  }
+  return await userByExternalId(ctx, identity.subject);
+}
+
+async function userByExternalId(ctx: QueryCtx, externalId: string) {
+  return await ctx.db
+    .query("users")
+    .withIndex("byExternalId", (q) => q.eq("externalId", externalId))
+    .unique();
+}
+
+=== D:\next\clerix\convex\_generated\api.d.ts ===
+/* eslint-disable */
+/**
+ * Generated `api` utility.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import type * as http from "../http.js";
+import type * as users from "../users.js";
+
+import type {
+  ApiFromModules,
+  FilterApi,
+  FunctionReference,
+} from "convex/server";
+
+declare const fullApi: ApiFromModules<{
+  http: typeof http;
+  users: typeof users;
+}>;
+
+/**
+ * A utility for referencing Convex functions in your app's public API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = api.myModule.myFunction;
+ * ```
+ */
+export declare const api: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "public">
+>;
+
+/**
+ * A utility for referencing Convex functions in your app's internal API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = internal.myModule.myFunction;
+ * ```
+ */
+export declare const internal: FilterApi<
+  typeof fullApi,
+  FunctionReference<any, "internal">
+>;
+
+export declare const components: {};
+
+
+=== D:\next\clerix\convex\_generated\api.js ===
+/* eslint-disable */
+/**
+ * Generated `api` utility.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import { anyApi, componentsGeneric } from "convex/server";
+
+/**
+ * A utility for referencing Convex functions in your app's API.
+ *
+ * Usage:
+ * ```js
+ * const myFunctionReference = api.myModule.myFunction;
+ * ```
+ */
+export const api = anyApi;
+export const internal = anyApi;
+export const components = componentsGeneric();
+
+
+=== D:\next\clerix\convex\_generated\dataModel.d.ts ===
+/* eslint-disable */
+/**
+ * Generated data model types.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import { AnyDataModel } from "convex/server";
+import type { GenericId } from "convex/values";
+
+/**
+ * No `schema.ts` file found!
+ *
+ * This generated code has permissive types like `Doc = any` because
+ * Convex doesn't know your schema. If you'd like more type safety, see
+ * https://docs.convex.dev/using/schemas for instructions on how to add a
+ * schema file.
+ *
+ * After you change a schema, rerun codegen with `npx convex dev`.
+ */
+
+/**
+ * The names of all of your Convex tables.
+ */
+export type TableNames = string;
+
+/**
+ * The type of a document stored in Convex.
+ */
+export type Doc = any;
+
+/**
+ * An identifier for a document in Convex.
+ *
+ * Convex documents are uniquely identified by their `Id`, which is accessible
+ * on the `_id` field. To learn more, see [Document IDs](https://docs.convex.dev/using/document-ids).
+ *
+ * Documents can be loaded using `db.get(tableName, id)` in query and mutation functions.
+ *
+ * IDs are just strings at runtime, but this type can be used to distinguish them from other
+ * strings when type checking.
+ */
+export type Id<TableName extends TableNames = TableNames> =
+  GenericId<TableName>;
+
+/**
+ * A type describing your Convex data model.
+ *
+ * This type includes information about what tables you have, the type of
+ * documents stored in those tables, and the indexes defined on them.
+ *
+ * This type is used to parameterize methods like `queryGeneric` and
+ * `mutationGeneric` to make them type-safe.
+ */
+export type DataModel = AnyDataModel;
+
+
+=== D:\next\clerix\convex\_generated\server.d.ts ===
+/* eslint-disable */
+/**
+ * Generated utilities for implementing server-side Convex query and mutation functions.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import {
+  ActionBuilder,
+  HttpActionBuilder,
+  MutationBuilder,
+  QueryBuilder,
+  GenericActionCtx,
+  GenericMutationCtx,
+  GenericQueryCtx,
+  GenericDatabaseReader,
+  GenericDatabaseWriter,
+} from "convex/server";
+import type { DataModel } from "./dataModel.js";
+
+/**
+ * Define a query in this Convex app's public API.
+ *
+ * This function will be allowed to read your Convex database and will be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export declare const query: QueryBuilder<DataModel, "public">;
+
+/**
+ * Define a query that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to read from your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalQuery: QueryBuilder<DataModel, "internal">;
+
+/**
+ * Define a mutation in this Convex app's public API.
+ *
+ * This function will be allowed to modify your Convex database and will be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export declare const mutation: MutationBuilder<DataModel, "public">;
+
+/**
+ * Define a mutation that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to modify your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalMutation: MutationBuilder<DataModel, "internal">;
+
+/**
+ * Define an action in this Convex app's public API.
+ *
+ * An action is a function which can execute any JavaScript code, including non-deterministic
+ * code and code with side-effects, like calling third-party services.
+ * They can be run in Convex's JavaScript environment or in Node.js using the "use node" directive.
+ * They can interact with the database indirectly by calling queries and mutations using the {@link ActionCtx}.
+ *
+ * @param func - The action. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped action. Include this as an `export` to name it and make it accessible.
+ */
+export declare const action: ActionBuilder<DataModel, "public">;
+
+/**
+ * Define an action that is only accessible from other Convex functions (but not from the client).
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped function. Include this as an `export` to name it and make it accessible.
+ */
+export declare const internalAction: ActionBuilder<DataModel, "internal">;
+
+/**
+ * Define an HTTP action.
+ *
+ * The wrapped function will be used to respond to HTTP requests received
+ * by a Convex deployment if the requests matches the path and method where
+ * this action is routed. Be sure to route your httpAction in `convex/http.js`.
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument
+ * and a Fetch API `Request` object as its second.
+ * @returns The wrapped function. Import this function from `convex/http.js` and route it to hook it up.
+ */
+export declare const httpAction: HttpActionBuilder;
+
+/**
+ * A set of services for use within Convex query functions.
+ *
+ * The query context is passed as the first argument to any Convex query
+ * function run on the server.
+ *
+ * This differs from the {@link MutationCtx} because all of the services are
+ * read-only.
+ */
+export type QueryCtx = GenericQueryCtx<DataModel>;
+
+/**
+ * A set of services for use within Convex mutation functions.
+ *
+ * The mutation context is passed as the first argument to any Convex mutation
+ * function run on the server.
+ */
+export type MutationCtx = GenericMutationCtx<DataModel>;
+
+/**
+ * A set of services for use within Convex action functions.
+ *
+ * The action context is passed as the first argument to any Convex action
+ * function run on the server.
+ */
+export type ActionCtx = GenericActionCtx<DataModel>;
+
+/**
+ * An interface to read from the database within Convex query functions.
+ *
+ * The two entry points are {@link DatabaseReader.get}, which fetches a single
+ * document by its {@link Id}, or {@link DatabaseReader.query}, which starts
+ * building a query.
+ */
+export type DatabaseReader = GenericDatabaseReader<DataModel>;
+
+/**
+ * An interface to read from and write to the database within Convex mutation
+ * functions.
+ *
+ * Convex guarantees that all writes within a single mutation are
+ * executed atomically, so you never have to worry about partial writes leaving
+ * your data in an inconsistent state. See [the Convex Guide](https://docs.convex.dev/understanding/convex-fundamentals/functions#atomicity-and-optimistic-concurrency-control)
+ * for the guarantees Convex provides your functions.
+ */
+export type DatabaseWriter = GenericDatabaseWriter<DataModel>;
+
+
+=== D:\next\clerix\convex\_generated\server.js ===
+/* eslint-disable */
+/**
+ * Generated utilities for implementing server-side Convex query and mutation functions.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
+
+import {
+  actionGeneric,
+  httpActionGeneric,
+  queryGeneric,
+  mutationGeneric,
+  internalActionGeneric,
+  internalMutationGeneric,
+  internalQueryGeneric,
+} from "convex/server";
+
+/**
+ * Define a query in this Convex app's public API.
+ *
+ * This function will be allowed to read your Convex database and will be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export const query = queryGeneric;
+
+/**
+ * Define a query that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to read from your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The query function. It receives a {@link QueryCtx} as its first argument.
+ * @returns The wrapped query. Include this as an `export` to name it and make it accessible.
+ */
+export const internalQuery = internalQueryGeneric;
+
+/**
+ * Define a mutation in this Convex app's public API.
+ *
+ * This function will be allowed to modify your Convex database and will be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export const mutation = mutationGeneric;
+
+/**
+ * Define a mutation that is only accessible from other Convex functions (but not from the client).
+ *
+ * This function will be allowed to modify your Convex database. It will not be accessible from the client.
+ *
+ * @param func - The mutation function. It receives a {@link MutationCtx} as its first argument.
+ * @returns The wrapped mutation. Include this as an `export` to name it and make it accessible.
+ */
+export const internalMutation = internalMutationGeneric;
+
+/**
+ * Define an action in this Convex app's public API.
+ *
+ * An action is a function which can execute any JavaScript code, including non-deterministic
+ * code and code with side-effects, like calling third-party services.
+ * They can be run in Convex's JavaScript environment or in Node.js using the "use node" directive.
+ * They can interact with the database indirectly by calling queries and mutations using the {@link ActionCtx}.
+ *
+ * @param func - The action. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped action. Include this as an `export` to name it and make it accessible.
+ */
+export const action = actionGeneric;
+
+/**
+ * Define an action that is only accessible from other Convex functions (but not from the client).
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument.
+ * @returns The wrapped function. Include this as an `export` to name it and make it accessible.
+ */
+export const internalAction = internalActionGeneric;
+
+/**
+ * Define an HTTP action.
+ *
+ * The wrapped function will be used to respond to HTTP requests received
+ * by a Convex deployment if the requests matches the path and method where
+ * this action is routed. Be sure to route your httpAction in `convex/http.js`.
+ *
+ * @param func - The function. It receives an {@link ActionCtx} as its first argument
+ * and a Fetch API `Request` object as its second.
+ * @returns The wrapped function. Import this function from `convex/http.js` and route it to hook it up.
+ */
+export const httpAction = httpActionGeneric;
+
+
