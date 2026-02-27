@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge"
 
 export default function ProductDetailPage() {
   return (
-    <div className="flex flex-col h-[calc(100vh-theme(spacing.24))] overflow-hidden px-4 lg:px-6">
+    <div className="flex flex-col h-[calc(100vh-(--spacing(24)))] overflow-hidden px-4 lg:px-6">
 
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-border/50 shrink-0">
