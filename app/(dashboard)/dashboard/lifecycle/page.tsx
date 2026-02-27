@@ -336,7 +336,7 @@ export default function LifecyclePage() {
           </p>
         </div>
         
-        <div className="w-full md:w-80 bg-zinc-900/50 p-4 rounded-xl border border-border/50">
+        <div className="w-full md:w-80 bg-zinc-900/5 p-4 rounded-xl border border-border/50">
           <div className="flex justify-between items-center mb-2 text-sm">
             <span className="font-medium text-muted-foreground">Global Cleanse Progress</span>
             <span className="text-primary font-bold">{progressPercentage}%</span>
@@ -361,7 +361,7 @@ export default function LifecyclePage() {
                 className="w-80 flex flex-col h-full max-h-full rounded-xl bg-muted/20 border border-border/50"
               >
                 {/* Column Header */}
-                <div className="p-4 border-b border-border/50 flex items-center justify-between bg-zinc-900/40 rounded-t-xl shrink-0">
+                <div className="p-4 border-b border-border/50 flex items-center justify-between bg-zinc-900/5 rounded-t-xl shrink-0">
                   <div className="flex items-center gap-2">
                     <col.icon className={`w-5 h-5 ${col.color}`} />
                     <h3 className="font-semibold text-sm">{col.title}</h3>
