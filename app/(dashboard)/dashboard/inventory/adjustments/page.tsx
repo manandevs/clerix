@@ -27,7 +27,7 @@ export default function AdjustmentsPage() {
           
           <div className="md:col-span-5 space-y-2">
             <label className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-2"><ScanBarcode className="w-4 h-4" /> Scan or Enter SKU</label>
-            <Input autoFocus placeholder="e.g. CLRX-HW-01" className="h-16 text-xl bg-zinc-950 border-zinc-800 font-mono text-white placeholder:text-zinc-700" />
+            <Input autoFocus placeholder="e.g. CLRX-HW-01" className="h-16 text-xl bg-zinc-950 border-zinc-800  text-white placeholder:text-zinc-700" />
           </div>
 
           <div className="md:col-span-3 space-y-2">
@@ -69,7 +69,7 @@ export default function AdjustmentsPage() {
         </div>
         <div className="flex-1 overflow-auto scrollbar-hide">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-zinc-900/80 text-zinc-500 text-xs font-mono uppercase tracking-wider sticky top-0">
+            <thead className="bg-zinc-900/80 text-zinc-500 text-xs  uppercase tracking-wider sticky top-0">
               <tr>
                 <th className="px-6 py-3 font-semibold">Reconciliation ID</th>
                 <th className="px-6 py-3 font-semibold">SKU Target</th>
@@ -78,7 +78,7 @@ export default function AdjustmentsPage() {
                 <th className="px-6 py-3 font-semibold">Timestamp / Actor</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-800/50 text-zinc-300 font-mono text-xs">
+            <tbody className="divide-y divide-zinc-800/50 text-zinc-300  text-xs">
               {MOCK_AUDIT.map((row) => (
                 <tr key={row.id} className="hover:bg-zinc-900/30">
                   <td className="px-6 py-4 text-zinc-500">{row.id}</td>

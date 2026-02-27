@@ -72,11 +72,11 @@ export default function ProductsPage() {
                   <tr key={p.id} className="hover:bg-zinc-900/50 transition-colors group">
                     <td className="px-4 py-3 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0">
-                        {p.image ? <ImageIcon className="w-4 h-4 text-zinc-500" /> : <span className="text-[10px] text-zinc-500 font-mono">DIGITAL</span>}
+                        {p.image ? <ImageIcon className="w-4 h-4 text-zinc-500" /> : <span className="text-[10px] text-zinc-500 ">DIGITAL</span>}
                       </div>
                       <span className="font-semibold">{p.title}</span>
                     </td>
-                    <td className="px-4 py-3 font-mono text-xs text-zinc-400">{p.sku}</td>
+                    <td className="px-4 py-3  text-xs text-zinc-400">{p.sku}</td>
                     <td className="px-4 py-3">{p.price}</td>
                     <td className="px-4 py-3">
                       <Badge variant="outline" className={`rounded-full px-2 py-0.5 text-[11px] border-transparent ${p.status === 'Active' ? 'bg-green-500/10 text-green-500' : p.status === 'Low Stock' ? 'bg-orange-500/10 text-orange-500' : 'bg-red-500/10 text-red-500'}`}>
@@ -97,13 +97,13 @@ export default function ProductsPage() {
             {MOCK_PRODUCTS.map((p) => (
               <Card key={p.id} className="bg-zinc-950 border border-zinc-800 hover:border-primary/40 transition-all group overflow-hidden flex flex-col cursor-pointer hover:shadow-[0_0_20px_rgba(220,38,38,0.1)]">
                 <div className="aspect-video w-full bg-zinc-900 border-b border-zinc-800 relative flex items-center justify-center">
-                  {p.image ? <ImageIcon className="w-10 h-10 text-zinc-700" /> : <span className="text-xs font-mono text-zinc-600">NO MEDIA</span>}
+                  {p.image ? <ImageIcon className="w-10 h-10 text-zinc-700" /> : <span className="text-xs  text-zinc-600">NO MEDIA</span>}
                   <Badge className={`absolute top-2 right-2 rounded-full text-[10px] shadow-lg ${p.status === 'Out of Stock' ? 'bg-red-500 text-white' : 'bg-zinc-800 text-zinc-300 border border-zinc-700'}`}>
                     {p.status}
                   </Badge>
                 </div>
                 <CardContent className="p-4 flex flex-col flex-1">
-                  <p className="text-[10px] font-mono text-zinc-500 mb-1">{p.sku}</p>
+                  <p className="text-[10px]  text-zinc-500 mb-1">{p.sku}</p>
                   <h3 className="font-bold text-sm leading-tight group-hover:text-primary transition-colors line-clamp-2">{p.title}</h3>
                   <div className="mt-auto pt-4 flex items-center justify-between">
                     <span className="font-semibold">{p.price}</span>

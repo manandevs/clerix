@@ -169,7 +169,7 @@ function TaskCard({ task, isDragging }: { task: RemovalTask; isDragging?: boolea
               </span>
               <h4 className="font-semibold text-sm">Threat Discovered</h4>
               <p className="text-xs text-muted-foreground mt-1">Found highly sensitive PII exposed on public search directory.</p>
-              <span className="text-[10px] text-zinc-500 font-mono mt-2 block">OCT 24, 2025 • 14:32</span>
+              <span className="text-[10px] text-zinc-500  mt-2 block">OCT 24, 2025 • 14:32</span>
             </div>
 
             <div className="relative pl-6">
@@ -178,7 +178,7 @@ function TaskCard({ task, isDragging }: { task: RemovalTask; isDragging?: boolea
               </span>
               <h4 className="font-semibold text-sm">Legal Request Dispatched</h4>
               <p className="text-xs text-muted-foreground mt-1">Automated GDPR Article 17 (Right to Erasure) request delivered via certified API.</p>
-              <span className="text-[10px] text-zinc-500 font-mono mt-2 block">OCT 24, 2025 • 14:35</span>
+              <span className="text-[10px] text-zinc-500  mt-2 block">OCT 24, 2025 • 14:35</span>
             </div>
 
             {task.daysLeft !== undefined && (
@@ -201,7 +201,7 @@ function TaskCard({ task, isDragging }: { task: RemovalTask; isDragging?: boolea
                 </span>
                 <h4 className="font-semibold text-sm">Verified Removed</h4>
                 <p className="text-xs text-muted-foreground mt-1">Clerix AI scanned the database and confirmed the record no longer exists.</p>
-                <span className="text-[10px] text-zinc-500 font-mono mt-2 block">NOV 12, 2025 • 09:15</span>
+                <span className="text-[10px] text-zinc-500  mt-2 block">NOV 12, 2025 • 09:15</span>
               </div>
             )}
 

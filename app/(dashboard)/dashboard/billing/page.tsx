@@ -286,7 +286,7 @@ export default function BillingPage() {
                 </div>
                 
                 <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-4 text-lg font-mono tracking-widest text-zinc-300">
+                  <div className="flex items-center gap-4 text-lg  tracking-widest text-zinc-300">
                     <span>••••</span>
                     <span>••••</span>
                     <span>••••</span>

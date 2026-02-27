@@ -66,7 +66,7 @@ export default function OrdersPage() {
                     className={`cursor-pointer transition-all hover:-translate-y-1 ${order.urgent ? 'bg-red-500/5 border-red-500/40 shadow-[0_0_15px_rgba(239,68,68,0.1)]' : 'bg-zinc-950 border-zinc-800 hover:border-primary/40'}`}
                   >
                     <CardHeader className="p-4 pb-2 flex flex-row items-center justify-between space-y-0">
-                      <span className="font-mono font-bold text-sm text-white">{order.id}</span>
+                      <span className=" font-bold text-sm text-white">{order.id}</span>
                       <div className={`flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-md ${order.urgent ? 'bg-red-500/20 text-red-500' : 'bg-zinc-900 text-zinc-400'}`}>
                         <Clock className="w-3.5 h-3.5" /> {order.time}
                       </div>

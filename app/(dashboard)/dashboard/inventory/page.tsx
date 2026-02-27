@@ -64,7 +64,7 @@ export default function InventoryOverviewPage() {
               </thead>
               <tbody className="divide-y divide-zinc-800/50">
                 <tr className="bg-red-500/5">
-                  <td className="p-3 font-mono text-xs text-red-400">CLRX-HW-02</td>
+                  <td className="p-3  text-xs text-red-400">CLRX-HW-02</td>
                   <td className="p-3"><Badge className="bg-red-500 text-white hover:bg-red-600">12</Badge></td>
                   <td className="p-3 w-32 h-12">
                     <ResponsiveContainer width="100%" height="100%">
@@ -73,7 +73,7 @@ export default function InventoryOverviewPage() {
                   </td>
                 </tr>
                 <tr className="hover:bg-zinc-900/50">
-                  <td className="p-3 font-mono text-xs text-zinc-300">CLRX-MER-TEE</td>
+                  <td className="p-3  text-xs text-zinc-300">CLRX-MER-TEE</td>
                   <td className="p-3 text-zinc-400">45</td>
                   <td className="p-3 w-32 h-12">
                     <ResponsiveContainer width="100%" height="100%">

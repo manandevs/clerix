@@ -36,7 +36,7 @@ export default function DarkWebPage() {
         {/* Top: Threat Radar Map */}
         <Card className="h-1/2 min-h-[250px] bg-zinc-950 border-red-500/20 relative overflow-hidden flex flex-col p-4 shadow-[inset_0_0_50px_rgba(220,38,38,0.05)]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none" />
-          <h3 className="text-xs font-mono font-bold text-red-500/70 mb-2 uppercase tracking-widest z-10">Global Breach Nodes</h3>
+          <h3 className="text-xs font-bold text-red-500/70 mb-2 uppercase tracking-widest z-10">Global Breach Nodes</h3>
           <div className="flex-1 w-full h-full relative z-10">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
@@ -44,7 +44,7 @@ export default function DarkWebPage() {
                 <YAxis type="number" dataKey="y" hide domain={[0, 100]} />
                 <ZAxis type="number" dataKey="z" range={[100, 800]} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} content={({ payload }) => (
-                  payload?.length ? <div className="bg-zinc-900 border border-red-500/30 p-2 rounded text-xs text-red-400 font-mono">{payload[0].payload.name}</div> : null
+                  payload?.length ? <div className="bg-zinc-900 border border-red-500/30 p-2 rounded text-xs text-red-400 ">{payload[0].payload.name}</div> : null
                 )} />
                 <Scatter data={mockMapData} fill="rgba(239, 68, 68, 0.6)" className="drop-shadow-[0_0_8px_rgba(239,68,68,0.8)] animate-pulse" />
               </ScatterChart>
@@ -55,30 +55,30 @@ export default function DarkWebPage() {
         {/* Bottom: Credential List */}
         <div className="h-1/2 min-h-[250px] overflow-y-auto space-y-4 pr-2 scrollbar-hide">
           {BREACHES.map((b, i) => (
-            <div key={i} className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 flex flex-col md:flex-row md:items-center gap-4 hover:border-red-500/30 transition-colors">
+            <div key={i} className="bg-zinc-900/5 border border-zinc-800 rounded-lg p-4 flex flex-col md:flex-row md:items-center gap-4 hover:border-red-500/30 transition-colors">
               <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
                 <div className="space-y-1">
-                  <p className="text-[10px] uppercase text-zinc-500 font-bold tracking-wider">Source</p>
+                  <p className="text-[10px] uppercase text-zinc-700 font-bold tracking-wider">Source</p>
                   <p className="font-semibold text-sm flex items-center gap-1.5"><Database className="w-3.5 h-3.5 text-red-500" />{b.source}</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] uppercase text-zinc-500 font-bold tracking-wider">Date Found</p>
-                  <p className="text-sm text-zinc-300 flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-zinc-500" />{b.date}</p>
+                  <p className="text-[10px] uppercase text-zinc-700 font-bold tracking-wider">Date Found</p>
+                  <p className="text-sm text-zinc-500 flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-zinc-700" />{b.date}</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] uppercase text-zinc-500 font-bold tracking-wider">Vector</p>
-                  <p className="text-sm text-zinc-300">{b.vector}</p>
+                  <p className="text-[10px] uppercase text-zinc-700 font-bold tracking-wider">Vector</p>
+                  <p className="text-sm text-zinc-500">{b.vector}</p>
                 </div>
                 <div className="space-y-1 relative">
-                  <p className="text-[10px] uppercase text-zinc-500 font-bold tracking-wider">Exposed Data</p>
-                  <p className={`text-sm font-mono text-white transition-all duration-300 ${unredactedIndex === i ? 'blur-none select-all' : 'blur-md select-none'}`}>
+                  <p className="text-[10px] uppercase text-zinc-700 font-bold tracking-wider">Exposed Data</p>
+                  <p className={`text-sm  text-zinc-900 transition-all duration-300 ${unredactedIndex === i ? 'blur-none select-all' : 'blur-md select-none'}`}>
                     {b.data}
                   </p>
                 </div>
               </div>
               <Button 
                 variant="outline" size="sm" 
-                className="shrink-0 h-9 border-zinc-700 hover:bg-zinc-800"
+                className="shrink-0 h-9 border-zinc-700 hover:bg-zinc-200"
                 onPointerDown={() => setUnredactedIndex(i)}
                 onPointerUp={() => setUnredactedIndex(null)}
                 onPointerLeave={() => setUnredactedIndex(null)}

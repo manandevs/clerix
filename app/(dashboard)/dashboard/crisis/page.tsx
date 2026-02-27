@@ -58,7 +58,7 @@ export default function CrisisPage() {
               <p className="text-zinc-400 text-sm mb-4">This will immediately freeze all connected API integrations and generate legal dispute letters. Type <strong>LOCKDOWN</strong> to confirm.</p>
               <Input 
                 value={confirmText} onChange={(e) => setConfirmText(e.target.value)} 
-                className="bg-zinc-900 border-zinc-800 text-center text-lg font-mono tracking-widest uppercase"
+                className="bg-zinc-900 border-zinc-800 text-center text-lg  tracking-widest uppercase"
                 placeholder="TYPE HERE"
               />
             </div>

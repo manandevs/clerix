@@ -305,11 +305,11 @@ export default function DataLibraryPage() {
                         
                         <div className="flex-1 min-w-0 overflow-hidden">
                           {isRevealed ? (
-                            <span className="font-mono text-sm sm:text-base text-red-400 break-all select-all animate-in fade-in duration-300">
+                            <span className=" text-sm sm:text-base text-red-400 break-all select-all animate-in fade-in duration-300">
                               {item.value}
                             </span>
                           ) : (
-                            <span className="font-mono text-sm sm:text-base text-zinc-400 tracking-widest select-none blur-[2px] transition-all group-hover:blur-[1px]">
+                            <span className=" text-sm sm:text-base text-zinc-400 tracking-widest select-none blur-[2px] transition-all group-hover:blur-[1px]">
                               {item.redacted}
                             </span>
                           )}

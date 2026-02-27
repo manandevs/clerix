@@ -71,13 +71,13 @@ export default function ProductDetailPage() {
                     <tr className="hover:bg-zinc-900/50">
                       <td className="p-3 font-medium">USB-C / Matte Black</td>
                       <td className="p-3"><Input defaultValue="120.00" className="w-24 h-8 bg-zinc-950 border-zinc-800" /></td>
-                      <td className="p-3"><Input defaultValue="CLRX-HW-01-C" className="w-32 h-8 bg-zinc-950 border-zinc-800 font-mono text-xs" /></td>
+                      <td className="p-3"><Input defaultValue="CLRX-HW-01-C" className="w-32 h-8 bg-zinc-950 border-zinc-800  text-xs" /></td>
                       <td className="p-3 text-right"><Input defaultValue="450" className="w-16 h-8 bg-zinc-950 border-zinc-800 text-right ml-auto" /></td>
                     </tr>
                     <tr className="hover:bg-zinc-900/50">
                       <td className="p-3 font-medium">USB-A / Matte Black</td>
                       <td className="p-3"><Input defaultValue="120.00" className="w-24 h-8 bg-zinc-950 border-zinc-800" /></td>
-                      <td className="p-3"><Input defaultValue="CLRX-HW-01-A" className="w-32 h-8 bg-zinc-950 border-zinc-800 font-mono text-xs" /></td>
+                      <td className="p-3"><Input defaultValue="CLRX-HW-01-A" className="w-32 h-8 bg-zinc-950 border-zinc-800  text-xs" /></td>
                       <td className="p-3 text-right"><Input defaultValue="0" className="w-16 h-8 border-red-500/50 text-red-500 bg-red-500/10 text-right ml-auto" /></td>
                     </tr>
                   </tbody>

@@ -36,11 +36,11 @@ export default function ExtensionPage() {
       <Card className="flex-1 bg-zinc-950 border-zinc-800 flex flex-col overflow-hidden relative shadow-inner">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
         <CardHeader className="pb-2 border-b border-zinc-900 bg-zinc-900/50">
-          <CardTitle className="text-sm font-mono text-zinc-400 flex items-center gap-2">
+          <CardTitle className="text-sm  text-zinc-400 flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary animate-pulse" /> Live Network Telemetry
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 p-4 overflow-y-auto font-mono text-[11px] text-zinc-500 space-y-1.5 scrollbar-hide">
+        <CardContent className="flex-1 p-4 overflow-y-auto  text-[11px] text-zinc-500 space-y-1.5 scrollbar-hide">
           {logs.map((log, i) => (
             <div key={i} className="animate-in fade-in slide-in-from-left-2">
               <span className="text-primary/70">{new Date().toLocaleTimeString()}</span> {log}

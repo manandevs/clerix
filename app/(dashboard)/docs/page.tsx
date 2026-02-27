@@ -124,7 +124,7 @@ export default function DeveloperDocsPage() {
           <div className="relative bg-zinc-950 border-y border-r border-zinc-800 border-l-4 border-l-primary rounded-r-xl p-6 md:p-8 shadow-2xl flex flex-col md:flex-row gap-8 items-start justify-between">
 
             <div className="flex-1 space-y-4">
-              <div className="flex items-center gap-3 text-primary font-mono text-sm uppercase tracking-widest font-bold">
+              <div className="flex items-center gap-3 text-primary  text-sm uppercase tracking-widest font-bold">
                 <Terminal className="w-5 h-5" />
                 Template Initialization Guide
               </div>
@@ -143,7 +143,7 @@ export default function DeveloperDocsPage() {
               </Button>
             </div>
 
-            <div className="w-full md:w-[400px] shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg p-4 font-mono text-xs text-zinc-300 shadow-inner">
+            <div className="w-full md:w-[400px] shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg p-4  text-xs text-zinc-300 shadow-inner">
               <div className="flex items-center gap-2 mb-3 text-zinc-500 border-b border-zinc-800 pb-2">
                 <Code2 className="w-4 h-4" /> Quick Start
               </div>
@@ -206,7 +206,7 @@ export default function DeveloperDocsPage() {
                             <CardTitle className="text-lg font-bold text-white group-hover:text-primary transition-colors flex items-center gap-2">
                               {route.title}
                             </CardTitle>
-                            <CardDescription className="text-xs text-primary font-mono mt-1">
+                            <CardDescription className="text-xs text-primary  mt-1">
                               {route.url}
                             </CardDescription>
                           </div>
@@ -226,7 +226,7 @@ export default function DeveloperDocsPage() {
                                   <p className="text-xs text-zinc-400">This page relies on the following external or internal components:</p>
                                   <div className="flex flex-wrap gap-2 pt-2">
                                     {route.dependencies.map(dep => (
-                                      <Badge key={dep} variant="secondary" className="bg-zinc-900 text-zinc-300 font-mono text-[10px] border-zinc-700">
+                                      <Badge key={dep} variant="secondary" className="bg-zinc-900 text-zinc-300  text-[10px] border-zinc-700">
                                         {dep}
                                       </Badge>
                                     ))}
@@ -261,7 +261,7 @@ export default function DeveloperDocsPage() {
                         <div className="mt-auto flex items-center justify-between bg-zinc-900/80 border border-zinc-800 rounded-lg p-1.5 pl-3 group/code hover:border-zinc-700 transition-colors">
                           <div className="flex items-center gap-2">
                             <FileCode2 className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-                            <code className="text-[11px] font-mono text-zinc-400 truncate select-all">
+                            <code className="text-[11px]  text-zinc-400 truncate select-all">
                               {route.filePath}
                             </code>
                           </div>

@@ -17,7 +17,7 @@ export default function OrderDetailPage() {
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-zinc-900 border border-zinc-800" onClick={() => window.history.back()}><ChevronLeft className="w-4 h-4" /></Button>
           <div>
-            <h1 className="text-xl font-bold tracking-tight font-mono">#ORD-1042</h1>
+            <h1 className="text-xl font-bold tracking-tight ">#ORD-1042</h1>
             <p className="text-xs text-muted-foreground mt-0.5">Placed Oct 24, 2025 at 14:32</p>
           </div>
           <Badge className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20 ml-2">Unfulfilled</Badge>
@@ -42,7 +42,7 @@ export default function OrderDetailPage() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-bold text-sm text-white">Clerix Hardware Security Key</h4>
-                    <p className="text-xs font-mono text-zinc-500 mt-1">SKU: CLRX-HW-01-C</p>
+                    <p className="text-xs  text-zinc-500 mt-1">SKU: CLRX-HW-01-C</p>
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-sm">$120.00</p>
@@ -115,12 +115,12 @@ export default function OrderDetailPage() {
                     <span className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-zinc-950 border-2 border-green-500 flex items-center justify-center"><CheckCircle2 className="w-2.5 h-2.5 text-green-500" /></span>
                     <p className="font-semibold text-sm text-white">Payment Captured</p>
                     <p className="text-xs text-zinc-500 mt-1">$130.20 via Stripe (ending 4242)</p>
-                    <p className="text-[10px] text-zinc-600 font-mono mt-1">Oct 24, 14:35</p>
+                    <p className="text-[10px] text-zinc-600  mt-1">Oct 24, 14:35</p>
                   </div>
                   <div className="relative pl-6">
                     <span className="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-zinc-950 border-2 border-zinc-500" />
                     <p className="font-semibold text-sm text-zinc-300">Order Placed</p>
-                    <p className="text-[10px] text-zinc-600 font-mono mt-1">Oct 24, 14:32</p>
+                    <p className="text-[10px] text-zinc-600  mt-1">Oct 24, 14:32</p>
                   </div>
                 </div>
               </CardContent>

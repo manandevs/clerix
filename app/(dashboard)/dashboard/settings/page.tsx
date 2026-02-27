@@ -323,7 +323,7 @@ export default function SettingsPage() {
                     </div>
                     <div className="grid grid-cols-12 gap-4 p-4 items-center border-b border-border/50 bg-background/30 hover:bg-muted/10 transition-colors">
                       <div className="col-span-4 font-medium text-sm">Production Workflow</div>
-                      <div className="col-span-4 font-mono text-xs text-muted-foreground flex items-center gap-2">
+                      <div className="col-span-4  text-xs text-muted-foreground flex items-center gap-2">
                         clrx_live_••••••••8f92
                         <Button 
                           variant="ghost" 
@@ -341,7 +341,7 @@ export default function SettingsPage() {
                     </div>
                     <div className="grid grid-cols-12 gap-4 p-4 items-center bg-background/30 hover:bg-muted/10 transition-colors">
                       <div className="col-span-4 font-medium text-sm">Zapier Integration</div>
-                      <div className="col-span-4 font-mono text-xs text-muted-foreground flex items-center gap-2">
+                      <div className="col-span-4  text-xs text-muted-foreground flex items-center gap-2">
                         clrx_test_••••••••3a1b
                         <Button 
                           variant="ghost" 

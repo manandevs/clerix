@@ -71,7 +71,7 @@ export default function SearchPage() {
         <div className="w-full max-w-3xl animate-in fade-in zoom-in-95 duration-300">
           
           <div className="mb-4 text-center">
-            <Badge variant="outline" className="border-border/50 text-muted-foreground bg-background/50 backdrop-blur font-mono text-[10px] tracking-widest uppercase mb-4">
+            <Badge variant="outline" className="border-border/50 text-muted-foreground bg-background/50 backdrop-blur  text-[10px] tracking-widest uppercase mb-4">
               Global Command Center
             </Badge>
           </div>
@@ -85,7 +85,7 @@ export default function SearchPage() {
                 className="h-16 text-lg bg-transparent border-0 focus:ring-0 w-full placeholder:text-muted-foreground/50"
                 autoFocus
               />
-              <div className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground font-mono bg-zinc-900 px-2 py-1 rounded border border-border/50">
+              <div className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground  bg-zinc-900 px-2 py-1 rounded border border-border/50">
                 <span>ESC</span> to clear
               </div>
             </div>

@@ -79,7 +79,7 @@ export default function OnboardingPage() {
 
         {/* Console / Threat UI */}
         <div className="w-full bg-zinc-900/80 backdrop-blur border border-zinc-800 rounded-xl p-4 mb-8 h-64 flex flex-col shadow-2xl">
-          <div className="flex-1 overflow-y-auto space-y-2 font-mono text-xs text-zinc-400 mb-4 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto space-y-2  text-xs text-zinc-400 mb-4 scrollbar-hide">
             {logs.map((log, i) => (
               <div key={i} className="flex gap-2 animate-in fade-in slide-in-from-bottom-2">
                 <span className="text-primary">{">"}</span> {log}
@@ -99,7 +99,7 @@ export default function OnboardingPage() {
 
         {/* Progress & CTA */}
         <div className="w-full space-y-4">
-          <div className="flex justify-between text-xs font-mono font-bold text-primary">
+          <div className="flex justify-between text-xs  font-bold text-primary">
             <span>SYSTEM.SCAN</span>
             <span>{Math.round(progress)}%</span>
           </div>

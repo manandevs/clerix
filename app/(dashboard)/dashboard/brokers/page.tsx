@@ -39,7 +39,7 @@ export default function BrokersPage() {
 
       <div className="flex flex-1 overflow-hidden mt-6 gap-6">
         {/* A-Z Index Sidebar */}
-        <div className="hidden lg:flex flex-col gap-1 w-8 shrink-0 overflow-y-auto scrollbar-hide text-xs font-mono font-bold text-muted-foreground text-center">
+        <div className="hidden lg:flex flex-col gap-1 w-8 shrink-0 overflow-y-auto scrollbar-hide text-xs  font-bold text-muted-foreground text-center">
           {Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map(letter => (
             <button key={letter} className="hover:text-primary transition-colors py-1">{letter}</button>
           ))}

@@ -97,7 +97,7 @@ function Hero() {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 mt-10 md:mt-20">
         <div className="max-w-5xl mx-auto text-center animate-in fade-in-0 duration-1000 delay-300">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight animate-in slide-in-from-bottom-6 duration-1000">
             {words.map((word, wordIndex) => (
@@ -167,10 +167,10 @@ function Hero() {
                 className="text-center group cursor-default animate-in fade-in-0 zoom-in-95 duration-500"
                 style={{ animationDelay: `${2400 + index * 100}ms` }}
               >
-                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 group-hover:text-secondary transition-colors">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-1 group-hover:text-muted-foreground/75 transition-colors">
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                <div className="text-xs sm:text-sm text-muted-foreground group-hover:text-muted-foreground/50 transition-colors">
                   {stat.label}
                 </div>
               </div>

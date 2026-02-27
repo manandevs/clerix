@@ -130,7 +130,7 @@ const DocumentThumbnail = ({ type, format, colorClass }: { type: string, format:
         <div className={`absolute top-0 left-0 w-full h-1 ${colorClass}`} />
         <div className="flex items-center justify-between mb-2 opacity-50">
           <IconFileSpreadsheet className="w-6 h-6" />
-          <span className="text-xs font-mono">.CSV</span>
+          <span className="text-xs ">.CSV</span>
         </div>
         {[...Array(6)].map((_, i) => (
           <div key={i} className="flex gap-2">
@@ -456,10 +456,10 @@ export default function ReportsPage() {
                      <div className="flex items-center gap-4 border-b border-zinc-800 pb-4 mb-4 opacity-50">
                         <IconFileSpreadsheet className="w-8 h-8" />
                         <div>
-                          <p className="font-mono text-sm">id,broker,status,date_found,severity</p>
-                          <p className="font-mono text-sm">1,Spokeo,removed,2025-10-12,high</p>
-                          <p className="font-mono text-sm">2,Acxiom,pending,2025-11-04,medium</p>
-                          <p className="font-mono text-sm">3,ZoomInfo,removed,2025-11-15,high</p>
+                          <p className=" text-sm">id,broker,status,date_found,severity</p>
+                          <p className=" text-sm">1,Spokeo,removed,2025-10-12,high</p>
+                          <p className=" text-sm">2,Acxiom,pending,2025-11-04,medium</p>
+                          <p className=" text-sm">3,ZoomInfo,removed,2025-11-15,high</p>
                         </div>
                      </div>
                   </div>
