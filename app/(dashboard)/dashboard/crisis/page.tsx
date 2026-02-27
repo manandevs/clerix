@@ -66,7 +66,7 @@ export default function CrisisPage() {
           </DialogContent>
         </Dialog>
         
-        <Button variant="ghost" className="mt-6 text-zinc-500 hover:text-white mx-auto block" onClick={() => window.history.back()}>
+        <Button variant="ghost" className="mt-6 text-zinc-500 mx-auto block" onClick={() => window.history.back()}>
           Cancel & Return to Dashboard
         </Button>
       </div>

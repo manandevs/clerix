@@ -18,7 +18,7 @@ const MOCK_LOGS = Array.from({ length: 50 }).map((_, i) => ({
 export default function AuditLogsPage() {
   return (
     <div className="flex flex-col h-[calc(100vh-theme(spacing.24))] overflow-hidden px-2 lg:px-4 pb-4">
-      
+
       {/* Dense Utilitarian Header */}
       <div className="flex items-center justify-between gap-2 p-2 bg-zinc-950 border border-border/50 rounded-t-sm shrink-0">
         <div className="flex items-center gap-2 w-full max-w-sm relative">
@@ -36,8 +36,8 @@ export default function AuditLogsPage() {
       </div>
 
       {/* Raw Data Table (Structurally mimicking TanStack) */}
-      <div className="flex-1 overflow-auto border-x border-b border-border/50 bg-zinc-950/50 rounded-b-sm scrollbar-hide">
-        <table className="w-full text-left text-xs  whitespace-nowrap">
+      <div className="flex-1 h-screen overflow-x-hidden border-x border-b border-zinc-800 bg-zinc-950 rounded-b-sm scrollbar-hide">
+        <table className="w-full text-left text-xs whitespace-nowrap">
           <thead className="sticky top-0 bg-zinc-900 text-zinc-400 border-b border-zinc-800 z-10">
             <tr>
               <th className="px-4 py-2 font-semibold">TIMESTAMP (UTC)</th>
@@ -47,25 +47,32 @@ export default function AuditLogsPage() {
               <th className="px-4 py-2 font-semibold">SOURCE_IP</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-800/50 text-zinc-300">
+
+          <tbody className="divide-y divide-zinc-800 text-zinc-300">
             {MOCK_LOGS.map((log) => (
-              <tr key={log.id} className="hover:bg-zinc-900/50 transition-colors">
+              <tr key={log.id} className="hover:bg-zinc-900 transition-colors">
                 <td className="px-4 py-1.5">{log.timestamp}</td>
                 <td className="px-4 py-1.5">{log.actor}</td>
                 <td className="px-4 py-1.5">
-                  <Badge variant="outline" className={`text-[9px] rounded-sm px-1.5 py-0 border-transparent ${log.action === 'AUTH_FAIL' ? 'bg-red-500/10 text-red-500' : 'bg-primary/10 text-primary'}`}>
+                  <Badge
+                    variant="outline"
+                    className={`text-[9px] rounded-sm px-1.5 py-0 border-transparent ${log.action === 'AUTH_FAIL'
+                      ? 'bg-red-500/10 text-red-400'
+                      : 'bg-emerald-500/10 text-emerald-400'
+                      }`}
+                  >
                     {log.action}
                   </Badge>
                 </td>
-                <td className="px-4 py-1.5 text-zinc-500">{log.target}</td>
-                <td className="px-4 py-1.5 text-zinc-500">{log.ip}</td>
+                <td className="px-4 py-1.5 text-zinc-400">{log.target}</td>
+                <td className="px-4 py-1.5 text-zinc-400">{log.ip}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      
-      <div className="mt-2 text-[10px] text-zinc-500 text-right  tracking-widest shrink-0">
+
+      <div className="mt-2 text-[12px] text-zinc-500 text-right  tracking-wide shrink-0">
         SHOWING 50 OF 14,204 LOGS • IMMUTABLE LEDGER ACTIVE
       </div>
     </div>

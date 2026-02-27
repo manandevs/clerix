@@ -20,12 +20,6 @@ import {
   RefreshCw
 } from "lucide-react"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -78,10 +72,10 @@ export default function WordAssistantPage() {
       content: "Hello. I am the Clerix Legal Assistant. I can help you draft custom legal privacy requests (GDPR, CCPA, DMCA) for entities not covered by our automated broker network. What would you like to draft today?"
     }
   ])
-  const[inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = useState("")
   const [documentContent, setDocumentContent] = useState(INITIAL_DOCUMENT)
   const [isTyping, setIsTyping] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const[copied, setCopied] = useState(false)
   
   const chatEndRef = useRef<HTMLDivElement>(null)
   const editorRef = useRef<HTMLDivElement>(null)
@@ -95,7 +89,7 @@ export default function WordAssistantPage() {
     if (!text.trim()) return
 
     const userMsg: ChatMessage = { id: Date.now().toString(), role: "user", content: text }
-    setMessages(prev => [...prev, userMsg])
+    setMessages(prev =>[...prev, userMsg])
     setInputValue("")
     setIsTyping(true)
 
@@ -125,17 +119,17 @@ export default function WordAssistantPage() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-theme(spacing.24))] overflow-hidden px-4 lg:px-6 pb-6">
+    <div className="flex flex-col h-screen overflow-hidden bg-[#fafafa] p-4 lg:p-6 pb-6 text-zinc-900">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-primary/10 rounded-xl border border-primary/20 hidden sm:block">
-            <FileText className="w-6 h-6 text-primary" />
+          <div className="p-2.5 bg-zinc-200/60 rounded-xl border border-zinc-300/60 hidden sm:block">
+            <FileText className="w-6 h-6 text-zinc-800" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight mb-1">Word Assistant</h1>
-            <p className="text-muted-foreground text-sm max-w-2xl">
+            <h1 className="text-2xl font-bold tracking-tight mb-1 text-zinc-900">Word Assistant</h1>
+            <p className="text-zinc-500 text-sm max-w-2xl">
               AI-driven drafting environment for custom legal privacy requests and out-of-band communications.
             </p>
           </div>
@@ -143,16 +137,16 @@ export default function WordAssistantPage() {
       </div>
 
       {/* Two-Column IDE Workspace */}
-      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden gap-6">
+      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden gap-6 h-full">
         
         {/* Left Column: AI Prompt Interface */}
-        <div className={`w-full lg:w-[400px] flex flex-col bg-card/20 backdrop-blur border border-border/50 rounded-xl overflow-hidden shrink-0 ${isMobile ? 'h-1/2' : 'h-full'}`}>
-          <div className="p-4 border-b border-border/50 bg-background/40 flex items-center justify-between shrink-0">
-            <h2 className="font-semibold flex items-center gap-2 text-sm">
-              <Sparkles className="w-4 h-4 text-primary" />
+        <div className={`w-full lg:w-[420px] flex flex-col bg-white border border-zinc-200/80 rounded-xl overflow-hidden shrink-0 shadow-sm ${isMobile ? 'h-1/2' : 'h-full'}`}>
+          <div className="p-4 border-b border-zinc-100 flex items-center justify-between shrink-0">
+            <h2 className="font-semibold flex items-center gap-2 text-sm text-zinc-900">
+              <Sparkles className="w-4 h-4 text-zinc-700" />
               Clerix AI Drafter
             </h2>
-            <Badge variant="outline" className="text-[10px] border-primary/30 text-primary bg-primary/5">
+            <Badge variant="outline" className="text-[10px] font-medium border-zinc-200 text-zinc-500 bg-zinc-50 hover:bg-zinc-50">
               Legal Model v2.1
             </Badge>
           </div>
@@ -162,15 +156,15 @@ export default function WordAssistantPage() {
             {messages.map((msg) => (
               <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border ${
-                  msg.role === 'user' ? 'bg-muted border-border' : 'bg-primary/10 border-primary/30 text-primary'
+                  msg.role === 'user' ? 'bg-zinc-100 border-zinc-200 text-zinc-600' : 'bg-zinc-100 border-zinc-200 text-zinc-700'
                 }`}>
                   {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
-                <div className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} max-w-[80%]`}>
-                  <div className={`p-3 rounded-2xl text-sm ${
+                <div className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} max-w-[85%]`}>
+                  <div className={`p-4 rounded-3xl text-[14px] leading-relaxed ${
                     msg.role === 'user' 
-                      ? 'bg-primary text-primary-foreground rounded-tr-sm' 
-                      : 'bg-zinc-900 border border-border/50 text-foreground rounded-tl-sm'
+                      ? 'bg-zinc-100 rounded-tr-sm text-zinc-800' 
+                      : 'bg-[#18181b] text-zinc-200 rounded-tl-sm shadow-sm'
                   }`}>
                     {msg.content}
                   </div>
@@ -180,13 +174,13 @@ export default function WordAssistantPage() {
             
             {isTyping && (
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border bg-primary/10 border-primary/30 text-primary">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border bg-zinc-100 border-zinc-200 text-zinc-700">
                   <Bot className="w-4 h-4" />
                 </div>
-                <div className="p-3 rounded-2xl bg-zinc-900 border border-border/50 rounded-tl-sm flex gap-1 items-center">
-                  <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce" />
-                  <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce [animation-delay:0.2s]" />
-                  <span className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-bounce[animation-delay:0.4s]" />
+                <div className="p-4 rounded-3xl bg-[#18181b] rounded-tl-sm flex gap-1.5 items-center">
+                  <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce" />
+                  <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce[animation-delay:0.2s]" />
+                  <span className="w-1.5 h-1.5 bg-zinc-500 rounded-full animate-bounce[animation-delay:0.4s]" />
                 </div>
               </div>
             )}
@@ -194,14 +188,14 @@ export default function WordAssistantPage() {
           </div>
 
           {/* Prompt Presets & Input Area */}
-          <div className="p-4 border-t border-border/50 bg-background/40 shrink-0">
+          <div className="p-4 border-t border-zinc-100 bg-white shrink-0">
             {messages.length === 1 && (
               <div className="flex flex-wrap gap-2 mb-3">
                 {PRESET_PROMPTS.map((preset, idx) => (
                   <button 
                     key={idx}
                     onClick={() => handleSendMessage(preset)}
-                    className="text-[11px] px-2.5 py-1.5 rounded-full border border-border/50 bg-background hover:border-primary/50 hover:text-primary transition-colors text-muted-foreground"
+                    className="text-[12px] px-3 py-1.5 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 transition-colors text-zinc-500"
                   >
                     {preset}
                   </button>
@@ -214,73 +208,81 @@ export default function WordAssistantPage() {
             >
               <Input 
                 placeholder="Ask Clerix AI to draft a document..." 
-                className="bg-background/50 border-border/50 pr-10"
+                className="bg-white border-zinc-200/80 pr-10 focus-visible:ring-zinc-300 text-[14px] h-11"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
               <Button 
                 type="submit" 
                 size="icon" 
-                className="absolute right-1 w-8 h-8 bg-primary hover:bg-primary/90"
+                className="absolute right-1.5 w-8 h-8 rounded-md bg-zinc-500 hover:bg-zinc-600 text-white"
                 disabled={!inputValue.trim() || isTyping}
               >
-                <Send className="w-4 h-4 text-primary-foreground" />
+                <Send className="w-4 h-4" />
               </Button>
             </form>
           </div>
         </div>
 
         {/* Right Column: WYSIWYG Editor */}
-        <div className={`flex-1 flex flex-col bg-zinc-950 border border-border/50 rounded-xl overflow-hidden relative ${isMobile ? 'h-1/2 mt-4' : 'h-full'}`}>
+        <div className={`flex-1 flex flex-col bg-[#09090b] border border-zinc-800 rounded-xl overflow-hidden relative shadow-xl ${isMobile ? 'h-1/2 mt-4' : 'h-full'}`}>
           
           {/* Floating Actions Header */}
-          <div className="p-2 border-b border-border/50 bg-zinc-900/80 backdrop-blur flex items-center justify-between shrink-0">
+          <div className="px-4 py-3 border-b border-zinc-800 bg-[#09090b] flex items-center justify-between shrink-0">
             {/* Mock Formatting Toolbar */}
-            <div className="flex items-center gap-1">
-              <div className="flex items-center bg-zinc-950 rounded-md border border-zinc-800 p-0.5">
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><Bold className="w-4 h-4" /></Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><Italic className="w-4 h-4" /></Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><Underline className="w-4 h-4" /></Button>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center rounded-md border border-zinc-800 p-0.5">
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><Bold className="w-4 h-4" /></Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><Italic className="w-4 h-4" /></Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><Underline className="w-4 h-4" /></Button>
               </div>
-              <Separator orientation="vertical" className="h-6 mx-1 bg-zinc-800" />
-              <div className="flex items-center bg-zinc-950 rounded-md border border-zinc-800 p-0.5">
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground bg-zinc-800"><AlignLeft className="w-4 h-4" /></Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><AlignCenter className="w-4 h-4" /></Button>
+              <Separator orientation="vertical" className="h-5 mx-1 bg-zinc-800" />
+              <div className="flex items-center rounded-md border border-zinc-800 p-0.5">
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-200 bg-zinc-800 hover:bg-zinc-700 rounded-sm"><AlignLeft className="w-4 h-4" /></Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><AlignCenter className="w-4 h-4" /></Button>
               </div>
-              <Separator orientation="vertical" className="h-6 mx-1 bg-zinc-800 hidden sm:block" />
-              <div className="hidden sm:flex items-center bg-zinc-950 rounded-md border border-zinc-800 p-0.5">
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><List className="w-4 h-4" /></Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-foreground"><ListOrdered className="w-4 h-4" /></Button>
+              <Separator orientation="vertical" className="h-5 mx-1 bg-zinc-800 hidden sm:block" />
+              <div className="hidden sm:flex items-center rounded-md border border-zinc-800 p-0.5">
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><List className="w-4 h-4" /></Button>
+                <Button variant="ghost" size="icon" className="w-8 h-8 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 rounded-sm"><ListOrdered className="w-4 h-4" /></Button>
               </div>
             </div>
 
             {/* Export & Copy Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <Button 
                 variant="outline" 
                 size="sm" 
                 onClick={handleCopy}
-                className={`h-9 border-zinc-800 hover:bg-zinc-800 transition-all ${copied ? 'text-green-500 border-green-500/30 bg-green-500/10' : ''}`}
+                className={`h-9 px-4 border-0 rounded-md font-medium transition-all ${
+                  copied 
+                    ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                    : 'bg-white text-black hover:bg-zinc-200'
+                }`}
               >
-                {copied ? <CheckCircle2 className="w-4 h-4 mr-1.5" /> : <Copy className="w-4 h-4 mr-1.5" />}
+                {copied ? <CheckCircle2 className="w-4 h-4 mr-2" /> : <Copy className="w-4 h-4 mr-2" />}
                 <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy Text'}</span>
               </Button>
-              <Button size="sm" className="h-9 gap-1.5 bg-primary hover:bg-primary/90">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="h-9 px-3 gap-2 text-zinc-200 hover:bg-zinc-800 hover:text-white"
+              >
                 <Download className="w-4 h-4" />
-                <span className="hidden sm:inline">Export PDF</span>
+                <span className="hidden sm:inline font-medium">Export PDF</span>
               </Button>
             </div>
           </div>
 
           {/* Live Document Area */}
-          <div className="flex-1 overflow-y-auto bg-zinc-950 p-6 md:p-10 lg:p-14 flex justify-center">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden bg-[#09090b] p-6 md:p-10 lg:p-14 flex justify-center [&::-webkit-scrollbar]:w-3 [&::-webkit-scrollbar-track]:bg-[#09090b] [&::-webkit-scrollbar-thumb]:bg-zinc-700[&::-webkit-scrollbar-thumb]:border-4 [&::-webkit-scrollbar-thumb]:border-solid [&::-webkit-scrollbar-thumb]:border-[#09090b] [&::-webkit-scrollbar-thumb]:rounded-full">
             {/* The "Paper" Container */}
             <div 
-              className="w-full max-w-3xl min-h-full bg-zinc-900 border border-zinc-800 rounded-sm shadow-2xl p-8 md:p-12 outline-none text-zinc-300 focus:ring-1 focus:ring-primary/50 transition-shadow"
+              className="w-full max-w-3xl min-h-[800px] h-fit bg-[#121214] border border-zinc-800/80 rounded-lg shadow-2xl p-10 md:p-14 outline-none focus-within:ring-1 focus-within:ring-zinc-700 transition-all"
             >
               <div 
                 ref={editorRef}
-                className="whitespace-pre-wrap font-serif text-[15px] leading-relaxed outline-none"
+                className="whitespace-pre-wrap font-serif text-[15.5px] text-zinc-300 leading-relaxed outline-none"
                 contentEditable
                 suppressContentEditableWarning
                 onInput={(e) => setDocumentContent(e.currentTarget.innerText)}
@@ -291,7 +293,7 @@ export default function WordAssistantPage() {
           </div>
 
           {/* Sync Status Footer */}
-          <div className="p-2 bg-zinc-900/80 border-t border-zinc-800 flex items-center justify-end text-[10px] text-zinc-500 shrink-0 gap-2">
+          <div className="px-4 py-2 bg-[#09090b] border-t border-zinc-900 flex items-center justify-end text-[11px] text-zinc-500 shrink-0 gap-1.5">
             <RefreshCw className="w-3 h-3" />
             Last synced with AI: Just now
           </div>

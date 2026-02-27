@@ -154,7 +154,7 @@ export default function HelpPage() {
             <Search className="absolute left-6 w-6 h-6 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input 
               placeholder="Search for articles, guides, or features..." 
-              className="w-full pl-16 pr-6 py-8 text-lg bg-transparent border-0 focus-visible:ring-0 placeholder:text-muted-foreground/50 h-auto"
+              className="w-full pl-16 pr-6 py-5 text-lg bg-transparent border-0 focus-visible:ring-0 placeholder:text-muted-foreground/50 h-auto"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsFocused(true)}
