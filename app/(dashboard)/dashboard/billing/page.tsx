@@ -1,17 +1,20 @@
 "use client"
 
-import React from "react"
-import {
-  CreditCard,
-  Check,
-  Shield,
-  Zap,
-  AlertCircle,
-  Download,
-  Building2,
-  Users
+import React, { useState } from "react"
+import { 
+  Check, 
+  CreditCard, 
+  Download, 
+  AlertTriangle, 
+  FileText, 
+  Zap, 
+  ShieldCheck, 
+  ArrowRight,
+  MoreVertical,
+  Calendar,
+  Sparkles
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
 import {
   Card,
   CardContent,
@@ -20,232 +23,328 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { PricingTable } from "@clerk/nextjs"
-import { Protect, useAuth } from "@clerk/nextjs"
 
-const ActualBillingFeatures = () => {
-  const { has } = useAuth()
-  
-  const hasIndividualPlan = has ? has({ plan: 'individual' }) : false
+// --- Mock Data ---
 
-  // Determine current plan details
-  const currentPlan = hasIndividualPlan ? 'Individual' : 'Free'
-  const currentPrice = hasIndividualPlan ? '$15' : '$0'
-  const trialEndsDate = 'Feb 25'
+const INVOICES = [
+  { id: "inv_1", date: "Oct 01, 2025", amount: "$199.00", status: "Paid", pdf: "INV-2025-10.pdf" },
+  { id: "inv_2", date: "Sep 01, 2025", amount: "$199.00", status: "Paid", pdf: "INV-2025-09.pdf" },
+  { id: "inv_3", date: "Aug 01, 2025", amount: "$199.00", status: "Paid", pdf: "INV-2025-08.pdf" },
+  { id: "inv_4", date: "Jul 01, 2025", amount: "$199.00", status: "Paid", pdf: "INV-2025-07.pdf" },
+]
+
+const PLANS = [
+  {
+    name: "Clerix Basic",
+    price: "$49",
+    period: "/mo",
+    description: "Essential privacy protection for individuals.",
+    features: [
+      "Automated scanning of 50+ major brokers",
+      "Standard legal removal requests (GDPR/CCPA)",
+      "Monthly progress reports",
+      "1 User Account"
+    ],
+    isCurrent: false,
+    cta: "Downgrade",
+  },
+  {
+    name: "Clerix Executive",
+    price: "$199",
+    period: "/mo",
+    description: "Advanced protection for high-profile individuals.",
+    features: [
+      "Continuous scanning of 200+ global brokers",
+      "Priority legal escalations & DPA reporting",
+      "Dark web identity monitoring",
+      "Dedicated Privacy Concierge",
+      "Up to 5 Team/Family Members"
+    ],
+    isCurrent: true,
+    cta: "Current Plan",
+  },
+  {
+    name: "Clerix Enterprise",
+    price: "Custom",
+    period: "",
+    description: "Organization-wide employee footprint erasure.",
+    features: [
+      "Unlimited automated broker coverage",
+      "API Access & Custom Webhooks",
+      "White-labeled reporting",
+      "SAML / SSO Authentication",
+      "Unlimited Team Members"
+    ],
+    isCurrent: false,
+    cta: "Contact Sales",
+  }
+]
+
+// --- Main Component ---
+
+export default function BillingPage() {
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false)
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-10 w-full">
-      {/* Current Plan Details */}
-      <Card className="lg:col-span-4 relative bg-card/50 border-border/50 shadow-lg">
-        <div className="absolute top-4 right-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full">
-          Active
+    <div className="flex flex-col gap-6 px-4 lg:px-6 pb-12">
+      
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2 shrink-0">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight mb-2">Billing & Subscription</h1>
+          <p className="text-muted-foreground text-sm max-w-2xl">
+            Manage your subscription tier, payment methods, and view your invoice history.
+          </p>
         </div>
+      </div>
 
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Current Plan</CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Manage your subscription and billing details
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-4 rounded-lg bg-zinc-800">
-            <div className="flex items-center gap-5">
-              <div className="p-3 rounded-full bg-zinc-700">
-                <Shield className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <div>
-                <p className="font-semibold text-xl text-primary-foreground">{currentPlan}</p>
-                {hasIndividualPlan && (
-                  <p className="text-sm text-muted-foreground">Trial ends {trialEndsDate}</p>
-                )}
-                {!hasIndividualPlan && (
-                  <p className="text-sm text-muted-foreground">Always free</p>
-                )}
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-3xl font-extrabold text-primary-foreground">{currentPrice}</p>
-              <p className="text-sm text-muted-foreground">/ month</p>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center justify-between text-sm font-medium text-muted-foreground">
-              <span>{hasIndividualPlan ? 'Data Broker Coverage' : 'Basic Data Scan'}</span>
-              <span className="text-primary-foreground font-semibold">
-                {hasIndividualPlan ? 'Active' : 'Limited'}
-              </span>
-            </div>
+      {/* Asymmetrical Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Left/Main Column: Current Plan & Upgrades (Spans 2 columns) */}
+        <div className="lg:col-span-2 space-y-6">
+          
+          {/* Current Plan Card */}
+          <Card className="bg-card/50 backdrop-blur border-primary/20 shadow-xl shadow-primary/5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full pointer-events-none" />
             
-            {hasIndividualPlan && (
-              <div className="space-y-2 pt-4">
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>Personal Account</span>
+            <CardHeader className="pb-4">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <CardTitle className="text-2xl">Clerix Executive</CardTitle>
+                    <Badge className="bg-primary/10 text-primary border-primary/30 hover:bg-primary/20">Active</Badge>
+                  </div>
+                  <CardDescription className="text-base">
+                    Your subscription renews on <span className="font-semibold text-foreground">November 1, 2026</span>
+                  </CardDescription>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>Monthly Privacy Reports</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>Basic Removal Requests</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>Standard Customer Support</span>
+                <div className="text-right">
+                  <span className="text-3xl font-bold">$199</span>
+                  <span className="text-muted-foreground">/mo</span>
                 </div>
               </div>
-            )}
-
-            {!hasIndividualPlan && (
-              <div className="space-y-2 pt-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="w-4 h-4" />
-                  <span>Limited Account Access</span>
+            </CardHeader>
+            
+            <CardContent className="space-y-6">
+              {/* Usage Progress Bars */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 rounded-xl border border-border/50 bg-background/30">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-muted-foreground">Active Automated Removals</span>
+                    <span className="font-bold">145 / 200</span>
+                  </div>
+                  <Progress value={72.5} className="h-2 bg-muted [&>div]:bg-primary" />
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="w-4 h-4" />
-                  <span>14-Day Trial Support</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="w-4 h-4" />
-                  <span>Monthly Privacy Summary</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Check className="w-4 h-4" />
-                  <span>Community Help</span>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium text-muted-foreground">Team Member Seats</span>
+                    <span className="font-bold">4 / 5</span>
+                  </div>
+                  <Progress value={80} className="h-2 bg-muted [&>div]:bg-primary" />
                 </div>
               </div>
-            )}
-          </div>
-        </CardContent>
 
-        <CardFooter className="flex justify-between border-t border-border">
-          {hasIndividualPlan && (
-            <Button
-              variant="ghost"
-              className="text-muted-foreground hover:text-primary-foreground transition-colors"
-            >
-              Cancel Subscription
-            </Button>
-          )}
-          <Button variant="outline" className="border-border hover:border-primary transition-colors">
-            {hasIndividualPlan ? 'Update Payment Method' : 'Upgrade to Individual'}
-          </Button>
-        </CardFooter>
-      </Card>
-
-      {/* Payment Method & History */}
-      <Card className="lg:col-span-3 bg-card/50 border-border/50 shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold">Payment Method</CardTitle>
-          <CardDescription className="text-muted-foreground">
-            {hasIndividualPlan ? 'Default payment for next invoice' : 'No payment method on file'}
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          {hasIndividualPlan ? (
-            <>
-              <div className="flex items-center gap-5 p-4 rounded-lg bg-zinc-800">
-                <CreditCard className="w-7 h-7 text-muted-foreground" />
-                <div className="flex-1">
-                  <p className="text-lg font-semibold text-primary-foreground">Visa ending in 4242</p>
-                  <p className="text-sm text-muted-foreground">Expiry 12/2028</p>
-                </div>
-                <Badge variant="secondary" className="text-xs px-2 py-1 rounded">
-                  Default
-                </Badge>
-              </div>
-
+              {/* Feature Checklist */}
               <div>
-                <h4 className="mb-5 text-sm font-semibold text-muted-foreground">Billing History</h4>
-                <div className="space-y-4">
-                  {[
-                    { date: "Feb 01, 2026", status: "Paid", amount: "$15.00" },
-                    { date: "Jan 01, 2026", status: "Paid", amount: "$15.00" },
-                  ].map((invoice, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between text-sm text-muted-foreground"
-                    >
-                      <span>{invoice.date}</span>
-                      <div className="flex items-center gap-4">
-                        <span className="text-primary-foreground font-semibold">{invoice.amount}</span>
-                        <Button variant="ghost" size="icon" className="h-7 w-7">
-                          <Download className="h-4 w-4" />
-                        </Button>
+                <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Included in your plan</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
+                  {PLANS[1].features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      <div className="mt-0.5 rounded-full bg-primary/10 p-0.5 shrink-0">
+                        <Check className="w-3.5 h-3.5 text-primary" />
                       </div>
+                      <span className="text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <CreditCard className="w-12 h-12 text-muted-foreground mb-4" />
-              <p className="text-sm text-muted-foreground">
-                Upgrade to Individual plan to add a payment method
-              </p>
+            </CardContent>
+            
+            <CardFooter className="pt-4 border-t border-border/50 bg-muted/10 flex flex-wrap items-center justify-between gap-4">
+              <Dialog open={isCancelModalOpen} onOpenChange={setIsCancelModalOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="ghost" className="text-red-500 hover:text-red-600 hover:bg-red-500/10">
+                    Cancel Subscription
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] border-border/50 bg-zinc-950">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5 text-orange-500" />
+                      Cancel Subscription?
+                    </DialogTitle>
+                    <DialogDescription className="text-zinc-400 pt-2">
+                      If you cancel, Clerix will stop sending automated legal requests to data brokers. Previously removed data may begin repopulating on public search sites.
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  {/* Retention Offer */}
+                  <div className="my-4 p-4 rounded-xl border border-primary/30 bg-primary/5 space-y-3">
+                    <h4 className="font-bold text-foreground flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-primary" />
+                      Wait! Get 2 Months Free
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      Switch to annual billing today and save $398. Your privacy is an ongoing process, don't leave it unprotected.
+                    </p>
+                    <Button className="w-full bg-primary hover:bg-primary/90 mt-2 text-primary-foreground font-semibold">
+                      Claim 2 Months Free
+                    </Button>
+                  </div>
+
+                  <DialogFooter className="flex-col sm:flex-row gap-2 sm:gap-0">
+                    <Button variant="outline" onClick={() => setIsCancelModalOpen(false)} className="w-full sm:w-auto">Keep Subscription</Button>
+                    <Button variant="ghost" className="text-red-500 hover:text-red-600 hover:bg-red-500/10 w-full sm:w-auto">Confirm Cancellation</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </CardFooter>
+          </Card>
+
+          {/* Pricing / Upgrades Section */}
+          <div className="pt-6">
+            <h3 className="text-xl font-bold mb-4">Available Plans</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {PLANS.map((plan) => (
+                <Card key={plan.name} className={`flex flex-col bg-card/40 backdrop-blur transition-all ${plan.isCurrent ? 'border-primary shadow-lg shadow-primary/5 ring-1 ring-primary/20' : 'border-border/50 hover:border-border'}`}>
+                  <CardHeader className="pb-4">
+                    {plan.isCurrent && (
+                      <Badge className="w-fit mb-2 bg-primary/20 text-primary border-primary/30">Current Plan</Badge>
+                    )}
+                    <CardTitle className="text-lg">{plan.name}</CardTitle>
+                    <div className="mt-2 flex items-baseline gap-1">
+                      <span className="text-2xl font-bold">{plan.price}</span>
+                      <span className="text-xs text-muted-foreground">{plan.period}</span>
+                    </div>
+                    <CardDescription className="text-xs mt-2 min-h-[32px]">{plan.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-1 pb-4">
+                    <Separator className="mb-4 bg-border/50" />
+                    <ul className="space-y-3">
+                      {plan.features.slice(0, 3).map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-xs">
+                          <Check className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter className="pt-0">
+                    <Button 
+                      variant={plan.isCurrent ? "secondary" : (plan.price === "Custom" ? "outline" : "default")} 
+                      className="w-full"
+                      disabled={plan.isCurrent}
+                    >
+                      {plan.cta}
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
-  )
-}
-
-const UpgradeBillingCards = () => {
-  return (
-    <div className="mt-8">
-      <h3 className="text-lg font-semibold mb-6">Available Plans</h3>
-      <div className="w-full">
-        <PricingTable />
-      </div>
-    </div>
-  )
-}
-
-const BillingPage = () => {
-  return (
-    <div className="flex flex-col gap-6 p-4 md:p-0 w-full">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Billing & Subscription</h1>
-          <p className="text-muted-foreground">
-            Manage your Clerix plan, payment methods, and invoices.
-          </p>
-        </div>
-        <Protect
-          condition={(has) => has({ plan: "individual" })}
-          fallback={null}
-        >
-          <div className="hidden md:flex items-center gap-2 p-2 bg-yellow-500/10 text-yellow-500 rounded-md text-sm border border-yellow-500/20">
-            <AlertCircle className="w-4 h-4" />
-            <span>Your trial ends Feb 25</span>
           </div>
-        </Protect>
+
+          <PricingTable />
+        </div>
+
+        {/* Right/Secondary Column: Payment & Invoices (Spans 1 column) */}
+        <div className="space-y-6">
+          
+          {/* Payment Method UI */}
+          <Card className="bg-card/50 backdrop-blur border-border/50">
+            <CardHeader>
+              <CardTitle className="text-lg">Payment Method</CardTitle>
+              <CardDescription>Default card for your recurring subscription.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="p-4 rounded-xl border border-border/50 bg-gradient-to-br from-zinc-900 to-zinc-950 relative overflow-hidden shadow-inner group">
+                {/* Decorative Credit Card Elements */}
+                <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-white/5 blur-2xl group-hover:bg-primary/10 transition-colors" />
+                <div className="absolute -left-6 -bottom-6 w-32 h-32 rounded-full bg-white/5 blur-2xl group-hover:bg-primary/10 transition-colors" />
+                
+                <div className="relative z-10 flex justify-between items-start mb-6">
+                  {/* Custom Mastercard SVG Graphic */}
+                  <div className="flex">
+                    <div className="w-8 h-8 rounded-full bg-red-500/80 mix-blend-screen" />
+                    <div className="w-8 h-8 rounded-full bg-orange-500/80 -ml-3 mix-blend-screen" />
+                  </div>
+                  <Badge variant="outline" className="bg-background/50 backdrop-blur text-[10px] border-zinc-700 text-zinc-300">Default</Badge>
+                </div>
+                
+                <div className="relative z-10 space-y-4">
+                  <div className="flex items-center gap-4 text-lg font-mono tracking-widest text-zinc-300">
+                    <span>••••</span>
+                    <span>••••</span>
+                    <span>••••</span>
+                    <span className="text-white font-bold">4242</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-zinc-500 uppercase tracking-wider font-semibold">
+                    <span>Gerhardt Lutterodt</span>
+                    <span>Exp 12/28</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="pt-2">
+              <Button variant="outline" className="w-full gap-2">
+                <CreditCard className="w-4 h-4" />
+                Update Payment Method
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Minimal Invoice History List */}
+          <Card className="bg-card/50 backdrop-blur border-border/50 flex flex-col h-[calc(100%-theme(spacing.6)-268px)]">
+            <CardHeader>
+              <CardTitle className="text-lg">Billing History</CardTitle>
+              <CardDescription>Recent invoices and receipts.</CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 px-0">
+              <div className="flex flex-col divide-y divide-border/50">
+                {INVOICES.map((invoice) => (
+                  <div key={invoice.id} className="flex items-center justify-between px-6 py-3 hover:bg-muted/30 transition-colors group">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-md bg-muted/50 text-muted-foreground group-hover:text-primary transition-colors">
+                        <FileText className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium">{invoice.amount}</p>
+                        <p className="text-xs text-muted-foreground">{invoice.date}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className="text-[10px] bg-green-500/10 text-green-500 border-green-500/20 hidden sm:inline-flex">
+                        {invoice.status}
+                      </Badge>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-primary">
+                        <Download className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+            <CardFooter className="pt-4 border-t border-border/50 bg-muted/10">
+              <Button variant="ghost" className="w-full text-sm">View All Invoices <ArrowRight className="w-4 h-4 ml-2" /></Button>
+            </CardFooter>
+          </Card>
+
+        </div>
       </div>
-
-      <Separator className="bg-zinc-800" />
-
-      <Protect
-        condition={(has) => {
-          return has({ plan: "individual" }) || has({ plan: "free" })
-        }}
-        fallback={<UpgradeBillingCards />}
-      >
-        <ActualBillingFeatures />
-      </Protect>
-      
-      <UpgradeBillingCards />
     </div>
   )
 }
-
-export default BillingPage
