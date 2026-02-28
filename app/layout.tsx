@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/next";
 
 const helvetica = localFont({
   src: "../public/fonts/helvetica.ttf",
@@ -115,6 +116,7 @@ export default function RootLayout({
             {children}
           </ConvexClientProvider>
         </ClerkProvider>
+        <Analytics />
       </body>
     </html>
   );
