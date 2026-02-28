@@ -1,9 +1,12 @@
+// app/layout.tsx
+
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ConvexClientProvider from "@/components/ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"; // 1. Import SpeedInsights
 
 const helvetica = localFont({
   src: "../public/fonts/helvetica.ttf",
@@ -20,16 +23,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clerix.viitechnologies.eu"),
-
   title: {
     default: "Clerix | AI Personal Data Privacy Dashboard",
     template: "%s | Clerix Privacy Command Center",
   },
-
   description: "Take control of your digital footprint with Clerix. The all-in-one privacy dashboard that finds, hides, and removes your sensitive personal data from the internet using advanced AI monitoring.",
-
   applicationName: "Clerix",
-
   keywords: [
     "personal data removal",
     "privacy dashboard",
@@ -43,15 +42,12 @@ export const metadata: Metadata = {
     "GDPR compliance tool",
     "remove info from google"
   ],
-
   authors: [{ name: "VII Technologies", url: "https://viitechnologies.eu" }],
   creator: "VII Technologies",
   publisher: "VII Technologies",
-
   openGraph: {
     title: "Clerix - Your AI Privacy Command Center",
     description: "Actively hunt down and eliminate your exposed personal information. Real-time monitoring, instant alerts, and automated data removal.",
-    // url: "https://clerix.viitechnologies.eu",
     siteName: "Clerix",
     locale: "en_US",
     type: "website",
@@ -64,8 +60,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // Twitter Card - For sharing on X (Twitter)
   twitter: {
     card: "summary_large_image",
     title: "Clerix | AI Personal Data Privacy Dashboard",
@@ -74,8 +68,6 @@ export const metadata: Metadata = {
     creator: "@viitechnologies",
     images: ["/og-image.jpg"],
   },
-
-  // Robots - Instructions for search engine crawlers
   robots: {
     index: true,
     follow: true,
@@ -89,16 +81,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
   icons: {
     icon: "/favicon.ico",
-    // shortcut: "/favicon-16x16.png",
-    // apple: "/apple-touch-icon.png",
   },
-
-  // alternates: {
-  //   canonical: "https://clerix.viitechnologies.eu",
-  // },
 };
 
 export default function RootLayout({
@@ -116,7 +101,10 @@ export default function RootLayout({
             {children}
           </ConvexClientProvider>
         </ClerkProvider>
+        
+        {/* Vercel Analytics & Speed Insights */}
         <Analytics />
+        <SpeedInsights /> 
       </body>
     </html>
   );
