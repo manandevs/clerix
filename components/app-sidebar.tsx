@@ -107,7 +107,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="/dashboard">
-                <IconInnerShadowTop className="!size-5 text-primary" />
                 <span className="text-base font-bold tracking-tight">Clerix System</span>
               </a>
             </SidebarMenuButton>
