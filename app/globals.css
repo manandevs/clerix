@@ -123,3 +123,11 @@
     @apply bg-background text-foreground;
   }
 }
+/* 
+body {
+  cursor: url("../public/images/gradient-black-yellow-cursor.png"), auto;
+}
+
+body:active {
+  cursor: url("../public/images/gradient-black-yellow-pointer.png"), pointer;
+} */
